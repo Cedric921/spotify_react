@@ -1,5 +1,5 @@
 run = "npm run dev"
-entrypoint = "src/App.jsx"
+entrypoint = "src/index.tsx"
 
 hidden = [".config", "tsconfig.json", "tsconfig.node.json", "vite.config.js", ".gitignore"]
 
