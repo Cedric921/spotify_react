@@ -1,10 +1,13 @@
-import './App.css'
+import './App.css';
 import React from 'react';
+import Home from './pages/Home';
 
-export default function App() {
-  return (
-    <main>
-      React ⚛️ + Vite ⚡ + Replit 🌀
-    </main>
-  )
-}
+const App: React.FC = () => {
+	return (
+		<>
+			<Home />
+		</>
+	);
+};
+
+export default App;
