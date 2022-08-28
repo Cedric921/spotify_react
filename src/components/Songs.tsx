@@ -18,11 +18,12 @@ import { SongsType } from '../types/tracks.type';
 
 const SongsPage = ({ tracks }: SongsType) => {
 	return (
-		<Box flex={4}>
-			<Typography>Last musics</Typography>
-
-				{tracks ? (
-			      <Grid container spacing={2}>
+		<Box flex={4} bgcolor={'background.primary'} color={'text.primary'}>
+			{tracks ? (
+				<Grid container spacing={2}>
+					<Typography textAlign='center' fontSize='small'>
+						Last musics
+					</Typography>
 					{tracks.items?.map((track, i) => (
 						<Grid item xs={4} key={i}>
 							<Card sx={{ maxWidth: 345, boxShadow: 5, margin: 1 }}>
@@ -63,12 +64,17 @@ const SongsPage = ({ tracks }: SongsType) => {
 							</Card>
 						</Grid>
 					))}
-					</Grid>
-				) : (
-					<Stack justifyContent="center" alignItems="center" >
-						<Box>No song to show</Box>
-					</Stack>
-				)}
+				</Grid>
+			) : (
+				<Stack
+					justifyContent='center'
+					alignItems='center'
+					height={100}
+					sx={{ width: '100%', height: '100%', bgcolor: 'gray' }}
+				>
+					<Box>No song to show</Box>
+				</Stack>
+			)}
 		</Box>
 	);
 };

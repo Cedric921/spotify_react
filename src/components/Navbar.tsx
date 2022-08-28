@@ -33,6 +33,7 @@ const Navbar = ({ search, setSearchInput }: NavbarType) => {
 				<Typography>Music search</Typography>
 				<SearchBar>
 					<InputBase
+						color={'success'}
 						placeholder='Search track'
 						fullWidth
 						onChange={(e) => setSearchInput(e.target.value)}

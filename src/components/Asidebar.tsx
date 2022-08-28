@@ -1,11 +1,31 @@
 import { Home, ModeNight } from '@mui/icons-material';
-import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Switch } from '@mui/material';
+import {
+	Box,
+	List,
+	ListItem,
+	ListItemButton,
+	ListItemIcon,
+	ListItemText,
+	Switch,
+	styled,
+} from '@mui/material';
 import React from 'react';
+import { AsideType } from '../types/tracks.type';
 
-const Asidebar = () => {
+
+
+const StyledBox = styled(Box)({
+	height: '91vh',
+});
+
+const Asidebar = ({ mode, setMode }: AsideType) => {
 	return (
-		<Box flex={1}>
-			<Box position='fixed'>
+		<StyledBox flex={1} bgcolor={'Background.default'} color={'text.primary'} height={300}>
+			<Box
+				position='fixed'
+				bgcolor={'background.default'}
+				color={'text.primary'}
+			>
 				<List>
 					<ListItem disablePadding>
 						<ListItemButton component='a' href='#home'>
@@ -15,13 +35,12 @@ const Asidebar = () => {
 							<ListItemText primary='Homepage' />
 						</ListItemButton>
 					</ListItem>
-					
-					
+
 					<ListItem disablePadding>
 						<ListItemButton
 							component='a'
 							href='#home'
-							// onClick={() => setMode(mode == 'dark' ? 'light' : 'dark')}
+							onClick={() => setMode(mode == 'dark' ? 'light' : 'dark')}
 						>
 							<ListItemIcon>
 								<ModeNight />
@@ -31,7 +50,7 @@ const Asidebar = () => {
 					</ListItem>
 				</List>
 			</Box>
-		</Box>
+		</StyledBox>
 	);
 };
 
