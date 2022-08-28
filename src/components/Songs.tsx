@@ -14,33 +14,22 @@ import {
 } from '@mui/material';
 import { red } from '@mui/material/colors';
 import React from 'react';
+import { SongsType } from '../types/tracks.type';
 
-type SongsType = {
-	tracks: {
-		items: {
-			name: string;
-			href: string;
-			release_date: string;
-			album: { images: { height: number; url: string }[] };
-		}[];
-	};
-};
-
-const SongsPage: React.FC = ({ tracks }: SongsType) => {
-	console.log(tracks);
+const SongsPage = ({ tracks }: SongsType) => {
 	return (
 		<Box flex={4}>
 			<Typography>Last musics</Typography>
 
-			<Grid container spacing={2}>
-				{tracks &&
-					tracks.items?.map((track, i) => (
+				{tracks ? (
+			      <Grid container spacing={2}>
+					{tracks.items?.map((track, i) => (
 						<Grid item xs={4} key={i}>
-							<Card sx={{ maxWidth: 345 }}>
+							<Card sx={{ maxWidth: 345, boxShadow: 5, margin: 1 }}>
 								<CardHeader
 									avatar={
 										<Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-											R
+											{track.name.split('')[0]}
 										</Avatar>
 									}
 									action={
@@ -58,9 +47,10 @@ const SongsPage: React.FC = ({ tracks }: SongsType) => {
 									alt={track.name}
 								/>
 								<CardContent>
-									<Typography variant='body2' color='text.secondary'>
-										
-									</Typography>
+									<Typography
+										variant='body2'
+										color='text.secondary'
+									></Typography>
 								</CardContent>
 								<CardActions disableSpacing>
 									<IconButton aria-label='add to favorites'>
@@ -73,7 +63,12 @@ const SongsPage: React.FC = ({ tracks }: SongsType) => {
 							</Card>
 						</Grid>
 					))}
-			</Grid>
+					</Grid>
+				) : (
+					<Stack justifyContent="center" alignItems="center" >
+						<Box>No song to show</Box>
+					</Stack>
+				)}
 		</Box>
 	);
 };

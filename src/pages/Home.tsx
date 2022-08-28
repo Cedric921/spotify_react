@@ -6,6 +6,8 @@ import Asidebar from '../components/Asidebar';
 import Navbar from '../components/Navbar';
 import SongsPage from '../components/Songs';
 
+import { SongsType } from '../types/tracks.type';
+
 // display songs from context
 const CLIENT_ID = '873b382d84e242f7be31abf9f91bd0a2';
 const CLIENT_SECRET = '174f7831a4c243fd9a92577d3a6413c9';
@@ -13,19 +15,18 @@ const CLIENT_SECRET = '174f7831a4c243fd9a92577d3a6413c9';
 // display adbum from context
 const HomePage: React.FC = () => {
 	const [searchInput, setsearchInput] = useState('gims');
-	const [accesToken, setAccesToken] = useState('');
+	const [accesToken, setAccesToken] = useState('-');
 	const [tracks, setTracks] = useState();
-
-	const params = {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-		},
-		body: `grant_type=client_credentials&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`,
-	};
 
 	useEffect(() => {
 		const fetchSongs = async () => {
+			const params = {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				body: `grant_type=client_credentials&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`,
+			};
 			try {
 				// get API token
 				const res = await fetch(
@@ -33,7 +34,8 @@ const HomePage: React.FC = () => {
 					params
 				);
 				const data = await res.json();
-				if (data.ok) setAccesToken(data.access_token);
+				if (data.access_token) setAccesToken(data.access_token);
+
 				search();
 			} catch (e: any) {
 				console.error(e.message);
@@ -42,7 +44,7 @@ const HomePage: React.FC = () => {
 		fetchSongs();
 	}, []);
 
-	// console.log(accesToken);
+	console.log(accesToken);
 
 	const search = async () => {
 		console.log('searching');
