@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Home from './pages/Home';
 import { Box, createTheme, PaletteMode, ThemeProvider } from '@mui/material';
 import { Stack } from '@mui/system';
+import TracksContextProvider from './context/TracksContext';
 
 //  a add routing to app, with --home --login --song
 
@@ -17,7 +18,9 @@ const App: React.FC = () => {
 	});
 	return (
 		<ThemeProvider theme={darkTheme}>
-				<Home mode={mode} setMode={setMode}/>
+			<TracksContextProvider>
+				<Home mode={mode} setMode={setMode} />
+			</TracksContextProvider>
 		</ThemeProvider>
 	);
 };

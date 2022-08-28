@@ -1,10 +1,11 @@
 import { Search } from '@mui/icons-material';
 import { Box, Button, InputBase, TextField } from '@mui/material';
 import { Stack } from '@mui/system';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Asidebar from '../components/Asidebar';
 import Navbar from '../components/Navbar';
 import SongsPage from '../components/Songs';
+import { TracksContext } from '../context/TracksContext';
 
 import { HomeType } from '../types/tracks.type';
 
@@ -18,59 +19,66 @@ const HomePage = ({ mode, setMode }: HomeType) => {
 	const [accesToken, setAccesToken] = useState('-');
 	const [tracks, setTracks] = useState();
 
-	useEffect(() => {
-		const fetchSongs = async () => {
-			const params = {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-				},
-				body: `grant_type=client_credentials&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`,
-			};
-			try {
-				// get API token
-				const res = await fetch(
-					`https://accounts.spotify.com/api/token`,
-					params
-				);
-				const data = await res.json();
-				if (data.access_token) setAccesToken(data.access_token);
+	const { getApi } = useContext(TracksContext);
 
-				searchTracks();
-			} catch (e: any) {
-				console.error(e.message);
-			}
-		};
-		fetchSongs();
+	useEffect(() => {
+
+		getApi()
+		// const fetchSongs = async () => {
+		// 	const params = {
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Content-Type': 'application/x-www-form-urlencoded',
+		// 		},
+		// 		body: `grant_type=client_credentials&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`,
+		// 	};
+		// 	try {
+		// 		// get API token
+		// 		const res = await fetch(
+		// 			`https://accounts.spotify.com/api/token`,
+		// 			params
+		// 		);
+		// 		const data = await res.json();
+		// 		if (data.access_token) setAccesToken(data.access_token);
+
+		// 		searchTracks();
+		// 	} catch (e: any) {
+		// 		console.error(e.message);
+		// 	}
+		// };
+		// fetchSongs();
 	}, []);
 
 	console.log(accesToken);
 
-	const searchTracks = async () => {
-		console.log('searching');
-		const params = {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + accesToken,
-			},
-		};
+	// const searchTracks = async () => {
+	// 	console.log('searching');
+	// 	const params = {
+	// 		method: 'GET',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			Authorization: 'Bearer ' + accesToken,
+	// 		},
+	// 	};
 
-		try {
-			const response = await fetch(
-				`https://api.spotify.com/v1/search?q=${searchInput}&type=album,track`,
-				params
-			);
-			const data = await response.json();
-			setTracks(data.tracks);
-		} catch (err: any) {
-			console.log(err.message);
-		}
-	};
+	// 	try {
+	// 		const response = await fetch(
+	// 			`https://api.spotify.com/v1/search?q=${searchInput}&type=album,track`,
+	// 			params
+	// 		);
+	// 		const data = await response.json();
+	// 		setTracks(data.tracks);
+	// 	} catch (err: any) {
+	// 		console.log(err.message);
+	// 	}
+	// };
 
 	return (
 		<>
-			<Navbar search={searchTracks} setSearchInput={setsearchInput} />
+			<Navbar
+				// search={searchTracks}
+				// setSearchInput={setsearchInput}
+			/>
 			<Stack
 				justifyContent='space-between'
 				direction='row'
@@ -79,7 +87,7 @@ const HomePage = ({ mode, setMode }: HomeType) => {
 				color={'text.primary'}
 			>
 				<Asidebar mode={mode} setMode={setMode} />
-				<SongsPage tracks={tracks} />
+				<SongsPage />
 			</Stack>
 		</>
 	);
