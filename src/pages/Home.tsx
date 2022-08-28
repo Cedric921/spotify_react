@@ -1,6 +1,10 @@
 import { Search } from '@mui/icons-material';
 import { Box, Button, InputBase, TextField } from '@mui/material';
+import { Stack } from '@mui/system';
 import React, { useState, useEffect } from 'react';
+import Asidebar from '../components/Asidebar';
+import Navbar from '../components/Navbar';
+import SongsPage from '../components/Songs';
 
 // display songs from context
 const CLIENT_ID = '873b382d84e242f7be31abf9f91bd0a2';
@@ -10,6 +14,7 @@ const CLIENT_SECRET = '174f7831a4c243fd9a92577d3a6413c9';
 const HomePage: React.FC = () => {
 	const [searchInput, setsearchInput] = useState('gims');
 	const [accesToken, setAccesToken] = useState('');
+	const [tracks, setTracks] = useState();
 
 	const params = {
 		method: 'POST',
@@ -20,16 +25,27 @@ const HomePage: React.FC = () => {
 	};
 
 	useEffect(() => {
-		// get API token
-		fetch(`https://accounts.spotify.com/api/token`, params)
-			.then((res) => res.json())
-			.then((data) => setAccesToken(data.access_token));
+		const fetchSongs = async () => {
+			try {
+				// get API token
+				const res = await fetch(
+					`https://accounts.spotify.com/api/token`,
+					params
+				);
+				const data = await res.json();
+				if (data.ok) setAccesToken(data.access_token);
+				search();
+			} catch (e: any) {
+				console.error(e.message);
+			}
+		};
+		fetchSongs();
 	}, []);
 
 	// console.log(accesToken);
 
 	const search = async () => {
-		console.log('searching')
+		console.log('searching');
 		const params = {
 			method: 'GET',
 			headers: {
@@ -38,28 +54,27 @@ const HomePage: React.FC = () => {
 			},
 		};
 
-		const response = await fetch(`https://api.spotify.com/v1/search?q=${searchInput}&type=track`, params);
-		const data = await response.json();
+		try {
+			const response = await fetch(
+				`https://api.spotify.com/v1/search?q=${searchInput}&type=album,track`,
+				params
+			);
+			const data = await response.json();
 
-		console.log(data);
+			setTracks(data.tracks);
+		} catch (err: any) {
+			console.log(err.message);
+		}
 	};
 
 	return (
-		<Box flex={1}>
-			<TextField
-				id='outlined-basic'
-				label='Outlined'
-				variant='outlined'
-				onChange={(e) => setsearchInput(e.target.value)}
-				onKeyUp={(e) => {
-					if (e.key === 'Enter') {
-						console.log(searchInput);
-						search();
-					}
-				}}
-			/>
-			<Button onClick={() => search()}>Search</Button>
-		</Box>
+		<>
+			<Navbar search={search} setSearchInput={setsearchInput} />
+			<Stack justifyContent='space-between' direction='row' spacing={2}>
+				<Asidebar />
+				<SongsPage tracks={tracks} />
+			</Stack>
+		</>
 	);
 };
 

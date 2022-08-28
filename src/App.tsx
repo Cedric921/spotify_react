@@ -10,11 +10,9 @@ import { Stack } from '@mui/system';
 
 const App: React.FC = () => {
 	return (
-		<Box>
-			<Stack spacing={2} direction="row" justifyContent="center">
+		<>
 				<Home />
-			</Stack>
-		</Box>
+		</>
 	);
 };
 
