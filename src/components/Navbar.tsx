@@ -7,7 +7,8 @@ import {
 	Toolbar,
 	Typography,
 } from '@mui/material';
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
+import { TracksContext } from '../context/TracksContext';
 
 const StyledToolbar = styled(Toolbar)({
 	display: 'flex',
@@ -26,19 +27,22 @@ type NavbarType = {
 	setSearchInput: Dispatch<SetStateAction<string>>;
 };
 
-const Navbar = ({ search, setSearchInput }: NavbarType) => {
+const Navbar = (/*{ search, setSearchInput }: NavbarType*/) => {
+	const { searchTracks, setSearchInput } = useContext(TracksContext);
 	return (
 		<AppBar position='sticky'>
 			<StyledToolbar>
 				<Typography>Music search</Typography>
 				<SearchBar>
 					<InputBase
+						color='warning'
 						placeholder='Search track'
 						fullWidth
 						onChange={(e) => setSearchInput(e.target.value)}
 						onKeyUp={(e) => {
 							if (e.key === 'Enter') {
-								search();
+								// search();
+								searchTracks(e.target.value);
 							}
 						}}
 					/>
