@@ -7,17 +7,37 @@ import jwt_decode from 'jwt-decode';
 export const GoogleContext = createContext<DefaultUserContext>({
 	user: { email: '', name: '', picture: '' },
 	init() {},
+	logout() {},
+	checkUser(){},
 });
 
 const GoogleContextProvider = ({ children }: ContextType) => {
-   const [user, setUser] = useState<UserType>({ email: '', name: '', picture: '' });
+	const [user, setUser] = useState<UserType>({
+		email: '',
+		name: '',
+		picture: '',
+	});
 
 	const handleCallbackResponse = (response: any) => {
 		console.log('Encoded JWT ID token :', response.credential);
 		const userObject: UserType = jwt_decode(response.credential);
 		setUser(userObject);
+		localStorage.setItem('user', JSON.stringify(userObject));
 		console.log(userObject);
 		// document.getElementById('googleSignInButton')?.hidden = true,
+	};
+
+	const checkUser = () => {
+		const userObject = localStorage.getItem('user');
+		if (!userObject) {
+			return false;
+		}
+      setUser(JSON.parse(userObject));
+      return true
+	};
+
+	const logout = () => {
+		setUser({ email: '', name: '', picture: '' });
 	};
 
 	const init = () => {
@@ -32,7 +52,7 @@ const GoogleContextProvider = ({ children }: ContextType) => {
 		);
 	};
 	return (
-		<GoogleContext.Provider value={{ user, init }}>
+		<GoogleContext.Provider value={{ user, init, logout, checkUser }}>
 			{children}
 		</GoogleContext.Provider>
 	);

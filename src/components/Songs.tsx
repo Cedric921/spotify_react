@@ -26,10 +26,11 @@ const SongsPage = (/*{ tracks }: SongsType*/) => {
 					<Typography textAlign='center' fontSize='small'>
 						Last musics
 					</Typography>
-					<Grid container spacing={2}>
-						{tracks.items?.map((track:SingleTrackType , i: number) => (
-							<Grid item xs={4} key={i}>
-								<Card sx={{ maxWidth: 345, boxShadow: 5, margin: 1 }}>
+					<Grid container spacing={2} flexWrap='wrap'>
+						{tracks.items?.map((track: SingleTrackType, i: number) => (
+								<Card
+									 sx={{ width:300, maxWidth: 345, minWidth: 300, boxShadow: 5, margin: 1 }}
+								>
 									<CardHeader
 										avatar={
 											<Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
@@ -41,7 +42,7 @@ const SongsPage = (/*{ tracks }: SongsType*/) => {
 												<MoreVert />
 											</IconButton>
 										}
-										title={(track.name)}
+										title={track.name}
 										subheader={track.release_date}
 									/>
 									<CardMedia
@@ -65,7 +66,13 @@ const SongsPage = (/*{ tracks }: SongsType*/) => {
 										</IconButton>
 									</CardActions>
 								</Card>
-							</Grid>
+							// <Grid
+							// 	item
+							// 	xs={4}
+							// 	key={i}
+							// 	sx={{ maxWidth: 345, minWidth: 300, boxShadow: 5, margin: 1 }}
+							// >
+							// </Grid>
 						))}
 					</Grid>
 				</>

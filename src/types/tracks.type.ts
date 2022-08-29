@@ -1,8 +1,8 @@
-import { PaletteMode } from "@mui/material";
+import { PaletteMode } from '@mui/material';
 
 export type SongsType = {
 	[x: string]: any;
-	tracks?: {items: SingleTrackType[]};
+	tracks?: { items: SingleTrackType[] };
 };
 
 export type SingleTrackType = {
@@ -12,21 +12,19 @@ export type SingleTrackType = {
 	album: { images: { height: number; url: string }[] };
 };
 
-
 export type HomeType = {
-   mode: PaletteMode
-   setMode: React.Dispatch<React.SetStateAction<PaletteMode>>
-}
+	mode: PaletteMode;
+	setMode: React.Dispatch<React.SetStateAction<PaletteMode>>;
+};
 
 export type AsideType = {
 	mode: PaletteMode;
-   setMode: React.Dispatch<React.SetStateAction<PaletteMode>>
+	setMode: React.Dispatch<React.SetStateAction<PaletteMode>>;
 };
 
-
 export type ContextType = {
-   children: React.ReactNode
-}
+	children: React.ReactNode;
+};
 
 export type DefaultTrackContext = {
 	tracks: SongsType;
@@ -39,10 +37,12 @@ export type DefaultTrackContext = {
 export type DefaultUserContext = {
 	user: UserType;
 	init: () => void;
+	logout: () => void;
+	checkUser: () => void | false;
 };
 
 export type UserType = {
 	name: string;
 	email: string;
-	picture: string
-}
+	picture: string;
+};

@@ -26,6 +26,7 @@ const HomePage = ({ mode, setMode }: HomeType) => {
 			<Navbar mode={mode} setMode={setMode} />
 			<Stack
 				justifyContent='space-between'
+				alignItems='stretch'
 				direction='row'
 				spacing={2}
 				bgcolor={'background.default'}

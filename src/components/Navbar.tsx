@@ -52,7 +52,7 @@ const UserBox = styled(Box)(({ theme }) => ({
 const Navbar = ({ mode, setMode }: AsideType) => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const { searchTracks, setSearchInput } = useContext(TracksContext);
-	const { user } = useContext(GoogleContext);
+	const { user, logout } = useContext(GoogleContext);
 	return (
 		<AppBar position='sticky'>
 			<StyledToolbar>
@@ -75,18 +75,18 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 						color={mode == 'dark' ? 'info' : 'inherit'}
 						onClick={() => setMode(mode == 'dark' ? 'light' : 'dark')}
 					/>
-					<Typography>{user.name}</Typography>
+					<Typography>{user.name && user.name}</Typography>
 					<Avatar
-						src={user.picture}
+						src={user.picture && user.picture}
 						alt='Avatar'
 						sx={{ width: 30, height: 30 }}
 						onClick={() => setOpenMenu(!openMenu)}
 					/>
 				</Icons>
 				<UserBox>
-					<Typography>{user.name}</Typography>
+					<Typography>{user.name && user.name}</Typography>
 					<Avatar
-						src={user.picture}
+						src={user.picture && user.picture}
 						alt='Avatar'
 						sx={{ width: 30, height: 30 }}
 						onClick={() => setOpenMenu(!openMenu)}
@@ -108,7 +108,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 					horizontal: 'left',
 				}}
 			>
-				<MenuItem>Profile</MenuItem>
+				<MenuItem onClick={() => logout()}>Log out</MenuItem>
 				<MenuItem>Settings</MenuItem>
 			</Menu>
 		</AppBar>
