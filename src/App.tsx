@@ -1,8 +1,8 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import jwt_decode from 'jwt-decode';
 import Home from './pages/Home';
-import { Box, createTheme, PaletteMode, ThemeProvider } from '@mui/material';
-import { Stack } from '@mui/system';
+import { createTheme, PaletteMode, ThemeProvider } from '@mui/material';
 import TracksContextProvider from './context/TracksContext';
 
 //  a add routing to app, with --home --login --song
@@ -11,15 +11,44 @@ import TracksContextProvider from './context/TracksContext';
 
 const App: React.FC = () => {
 	const [mode, setMode] = useState<PaletteMode>('dark');
+	const [user, setUser] = useState(null);
 	const darkTheme = createTheme({
 		palette: {
 			mode: mode,
 		},
 	});
+
+	const handleCallbackResponse = (response: any) => {
+		console.log('Encoded JWT ID token :', response.credential);
+		const userObject = jwt_decode(response.credential);
+		setUser(userObject);
+		console.log(userObject);
+		// document.getElementById('googleSignInButton')?.hidden = true,
+	};
+
+	useEffect(() => {
+		/** global google */
+		google.accounts.id.initialize({
+			client_id:
+				'168229458088-7nheosjmbhhehtmkc4qrlfq3e0soajqr.apps.googleusercontent.com',
+			callback: handleCallbackResponse,
+		});
+		google.accounts.id.renderButton(
+			document.getElementById('googleSignInButton'),
+			{ theme: 'outline', size: 'large' }
+		);
+	}, []);
+
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<TracksContextProvider>
-				<Home mode={mode} setMode={setMode} />
+				{user == null && <div id='googleSignInButton'></div>}
+				{user && (
+					<>
+						<img src={user.picture} alt={user.name} width={100} height={100}/>
+						<Home mode={mode} setMode={setMode} />
+					</>
+				)}
 			</TracksContextProvider>
 		</ThemeProvider>
 	);

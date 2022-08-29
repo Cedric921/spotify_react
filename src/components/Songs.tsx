@@ -19,7 +19,6 @@ import { SongsType, SingleTrackType } from '../types/tracks.type';
 
 const SongsPage = (/*{ tracks }: SongsType*/) => {
 	const { tracks } = useContext(TracksContext);
-	console.log(tracks)
 	return (
 		<Box flex={4} bgcolor={'background.primary'} color={'text.primary'}>
 			{tracks ? (

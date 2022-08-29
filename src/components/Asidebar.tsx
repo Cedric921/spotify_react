@@ -25,6 +25,7 @@ const Asidebar = ({ mode, setMode }: AsideType) => {
 				position='fixed'
 				bgcolor={'background.default'}
 				color={'text.primary'}
+				width={100}
 			>
 				<List>
 					<ListItem disablePadding>

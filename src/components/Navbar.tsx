@@ -1,14 +1,16 @@
-import { Search } from '@mui/icons-material';
+import { ModeNight, Search } from '@mui/icons-material';
 import {
 	AppBar,
 	Button,
 	InputBase,
 	styled,
 	Toolbar,
+	Switch,
 	Typography,
 } from '@mui/material';
 import React, { Dispatch, SetStateAction, useContext } from 'react';
 import { TracksContext } from '../context/TracksContext';
+import { AsideType } from '../types/tracks.type';
 
 const StyledToolbar = styled(Toolbar)({
 	display: 'flex',
@@ -19,15 +21,11 @@ const SearchBar = styled('div')(({ theme }) => ({
 	backgroundColor: 'white',
 	padding: '0 10px',
 	borderRadius: theme.shape.borderRadius,
+	color: 'grey',
 	width: '40%',
 }));
 
-type NavbarType = {
-	search: () => Promise<void>;
-	setSearchInput: Dispatch<SetStateAction<string>>;
-};
-
-const Navbar = (/*{ search, setSearchInput }: NavbarType*/) => {
+const Navbar = ({ mode, setMode }: AsideType) => {
 	const { searchTracks, setSearchInput } = useContext(TracksContext);
 	return (
 		<AppBar position='sticky'>
@@ -35,7 +33,6 @@ const Navbar = (/*{ search, setSearchInput }: NavbarType*/) => {
 				<Typography>Music search</Typography>
 				<SearchBar>
 					<InputBase
-						color='warning'
 						placeholder='Search track'
 						fullWidth
 						onChange={(e) => setSearchInput(e.target.value)}
@@ -47,6 +44,10 @@ const Navbar = (/*{ search, setSearchInput }: NavbarType*/) => {
 						}}
 					/>
 				</SearchBar>
+					<ModeNight
+						color={mode == 'dark' ? 'info' : 'inherit'}
+						onClick={() => setMode(mode == 'dark' ? 'light' : 'dark')}
+					/>
 			</StyledToolbar>
 		</AppBar>
 	);
