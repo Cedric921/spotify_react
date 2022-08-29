@@ -24,7 +24,7 @@ export type AsideType = {
 };
 
 
-export type TracksContextType = {
+export type ContextType = {
    children: React.ReactNode
 }
 
@@ -35,3 +35,14 @@ export type DefaultTrackContext = {
 	searchTracks: (searchInput: string) => Promise<void>;
 	setSearchInput: React.Dispatch<React.SetStateAction<string>>;
 };
+
+export type DefaultUserContext = {
+	user: UserType;
+	init: () => void;
+};
+
+export type UserType = {
+	name: string;
+	email: string;
+	picture: string
+}
