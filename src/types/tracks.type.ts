@@ -38,7 +38,7 @@ export type DefaultUserContext = {
 	user: UserType;
 	init: () => void;
 	logout: () => void;
-	checkUser: () => void | false;
+	checkUser: () => boolean;
 };
 
 export type UserType = {

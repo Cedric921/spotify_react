@@ -1,14 +1,17 @@
 // 168229458088-7nheosjmbhhehtmkc4qrlfq3e0soajqr.apps.googleusercontent.com
 // GOCSPX - myGXt7Cu8tLdJhuusKxVhhPZbzoS;
-import React, { ContextType, createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { DefaultUserContext, UserType } from '../types/tracks.type';
 import jwt_decode from 'jwt-decode';
+import { ContextType } from '../types/tracks.type';
 
 export const GoogleContext = createContext<DefaultUserContext>({
 	user: { email: '', name: '', picture: '' },
 	init() {},
 	logout() {},
-	checkUser(){},
+	checkUser() {
+		return false;
+	},
 });
 
 const GoogleContextProvider = ({ children }: ContextType) => {
@@ -32,8 +35,8 @@ const GoogleContextProvider = ({ children }: ContextType) => {
 		if (!userObject) {
 			return false;
 		}
-      setUser(JSON.parse(userObject));
-      return true
+		setUser(JSON.parse(userObject));
+		return true;
 	};
 
 	const logout = () => {
