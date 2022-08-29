@@ -15,16 +15,26 @@ import { AsideType } from '../types/tracks.type';
 
 
 const StyledBox = styled(Box)({
-	height: '91vh',
+	height: '100%',
+	backgroundColor: 'rgb(255, 238, 238)',
 });
+
+
 
 const Asidebar = ({ mode, setMode }: AsideType) => {
 	return (
-		<StyledBox flex={1} bgcolor={'Background.default'} color={'text.primary'} height={300}>
-			<Box
+		<StyledBox
+			flex={1}
+			bgcolor={'Background.default'}
+			color={'text.primary'}
+			height={300}
+		>
+			<StyledBox
 				position='fixed'
 				bgcolor={'background.default'}
 				color={'text.primary'}
+				width={100}
+				height={100}
 			>
 				<List>
 					<ListItem disablePadding>
@@ -35,21 +45,8 @@ const Asidebar = ({ mode, setMode }: AsideType) => {
 							<ListItemText primary='Homepage' />
 						</ListItemButton>
 					</ListItem>
-
-					<ListItem disablePadding>
-						<ListItemButton
-							component='a'
-							href='#home'
-							onClick={() => setMode(mode == 'dark' ? 'light' : 'dark')}
-						>
-							<ListItemIcon>
-								<ModeNight />
-							</ListItemIcon>
-							<Switch />
-						</ListItemButton>
-					</ListItem>
 				</List>
-			</Box>
+			</StyledBox>
 		</StyledBox>
 	);
 };

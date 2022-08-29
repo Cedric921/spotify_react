@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { DefaultTrackContext, TracksContextType } from '../types/tracks.type';
+import { DefaultTrackContext, ContextType } from '../types/tracks.type';
 
 // display songs from context
 const CLIENT_ID = '873b382d84e242f7be31abf9f91bd0a2';
@@ -13,7 +13,7 @@ export const TracksContext = createContext<DefaultTrackContext>({
 	async searchTracks(searchInput) {},
 });
 
-const TracksContextProvider = ({ children }: TracksContextType) => {
+const TracksContextProvider = ({ children }: ContextType) => {
 	const [tracks, setTracks] = useState({});
 	const [searchInput, setSearchInput] = useState('gims');
 	const [accesToken, setAccesToken] = useState('-');
@@ -39,7 +39,6 @@ const TracksContextProvider = ({ children }: TracksContextType) => {
 	};
 
 	const searchTracks = async (searchInput: string = 'gims') => {
-		console.log('searching');
 		const params = {
 			method: 'GET',
 			headers: {
