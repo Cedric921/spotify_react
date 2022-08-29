@@ -15,7 +15,7 @@ import {
 import { red } from '@mui/material/colors';
 import React, { useContext } from 'react';
 import { TracksContext } from '../context/TracksContext';
-import { SongsType } from '../types/tracks.type';
+import { SongsType, SingleTrackType } from '../types/tracks.type';
 
 const SongsPage = (/*{ tracks }: SongsType*/) => {
 	const { tracks } = useContext(TracksContext);
@@ -28,7 +28,7 @@ const SongsPage = (/*{ tracks }: SongsType*/) => {
 						Last musics
 					</Typography>
 					<Grid container spacing={2}>
-						{tracks.items?.map((track, i) => (
+						{tracks.items?.map((track:SingleTrackType , i: number) => (
 							<Grid item xs={4} key={i}>
 								<Card sx={{ maxWidth: 345, boxShadow: 5, margin: 1 }}>
 									<CardHeader
@@ -42,7 +42,7 @@ const SongsPage = (/*{ tracks }: SongsType*/) => {
 												<MoreVert />
 											</IconButton>
 										}
-										title={track.name}
+										title={(track.name)}
 										subheader={track.release_date}
 									/>
 									<CardMedia
