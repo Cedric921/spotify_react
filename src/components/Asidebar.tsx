@@ -8,6 +8,7 @@ import {
 	ListItemText,
 	Switch,
 	styled,
+	Stack,
 } from '@mui/material';
 import React from 'react';
 import { AsideType } from '../types/tracks.type';
@@ -16,25 +17,26 @@ import { AsideType } from '../types/tracks.type';
 
 const StyledBox = styled(Box)({
 	height: '100%',
-	backgroundColor: 'rgb(255, 238, 238)',
+	width: '20%',
+});
+
+const StyledStack = styled(Stack)({
+	height: '100vh',
 });
 
 
 
-const Asidebar = ({ mode, setMode }: AsideType) => {
+const Asidebar = () => {
 	return (
-		<StyledBox
+		<StyledStack
 			flex={1}
-			bgcolor={'Background.default'}
+			bgcolor={'Background.secondary'}
 			color={'text.primary'}
-			height={300}
 		>
 			<StyledBox
 				position='fixed'
-				bgcolor={'background.default'}
+				// bgcolor={'background.default'}
 				color={'text.primary'}
-				width={100}
-				height={100}
 			>
 				<List>
 					<ListItem disablePadding>
@@ -47,7 +49,7 @@ const Asidebar = ({ mode, setMode }: AsideType) => {
 					</ListItem>
 				</List>
 			</StyledBox>
-		</StyledBox>
+		</StyledStack>
 	);
 };
 

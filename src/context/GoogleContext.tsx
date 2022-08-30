@@ -1,5 +1,8 @@
 // 168229458088-7nheosjmbhhehtmkc4qrlfq3e0soajqr.apps.googleusercontent.com
 // GOCSPX - myGXt7Cu8tLdJhuusKxVhhPZbzoS;
+
+// import * as google from 'https://accounts.google.com/gsi/client';
+
 import React, { createContext, useState } from 'react';
 import { DefaultUserContext, UserType } from '../types/tracks.type';
 import jwt_decode from 'jwt-decode';
@@ -41,6 +44,7 @@ const GoogleContextProvider = ({ children }: ContextType) => {
 
 	const logout = () => {
 		setUser({ email: '', name: '', picture: '' });
+		localStorage.removeItem('user');
 	};
 
 	const init = () => {
@@ -61,4 +65,4 @@ const GoogleContextProvider = ({ children }: ContextType) => {
 	);
 };
 
-export default GoogleContextProvider;
+export default React.memo(GoogleContextProvider);

@@ -15,9 +15,10 @@ const CLIENT_SECRET = '174f7831a4c243fd9a92577d3a6413c9';
 
 // display adbum from context
 const HomePage = ({ mode, setMode }: HomeType) => {
-	const { getApi } = useContext(TracksContext);
+	const { getApi, searchTrackFromRapid } = useContext(TracksContext);
 
 	useEffect(() => {
+		searchTrackFromRapid();
 		getApi();
 	}, []);
 
@@ -32,7 +33,7 @@ const HomePage = ({ mode, setMode }: HomeType) => {
 				bgcolor={'background.default'}
 				color={'text.primary'}
 			>
-				<Asidebar mode={mode} setMode={setMode} />
+				<Asidebar />
 				<SongsPage />
 			</Stack>
 		</>

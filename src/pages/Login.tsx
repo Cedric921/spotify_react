@@ -8,7 +8,7 @@ const CustomBox = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center',
-	background: 'linear-gradient(to bottom, #9a5454, #7070c7)',
+	background: 'linear-gradient(to bottom, #4b2727, #17173a)',
 }));
 
 const LoginPage: React.FC = () => {
