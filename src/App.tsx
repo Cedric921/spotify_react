@@ -9,7 +9,7 @@ import LoginPage from './pages/Login';
 
 const App: React.FC = () => {
 	const [mode, setMode] = useState<PaletteMode>('light');
-	const { user, init, checkUser } = useContext(GoogleContext);
+	const { user, init, checkUser, } = useContext(GoogleContext);
 	const darkTheme = createTheme({
 		palette: {
 			mode: mode,

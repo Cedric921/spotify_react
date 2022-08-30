@@ -16,7 +16,8 @@
     "@emotion/styled": "^11.10.0",
     "@mui/icons-material": "^5.10.2",
     "@mui/material": "^5.10.2",
-    "jwt-decode": "^3.1.2"
+    "jwt-decode": "^3.1.2",
+    "react-player": "^2.10.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

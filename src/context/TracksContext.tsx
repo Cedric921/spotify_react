@@ -7,15 +7,32 @@ const CLIENT_SECRET = '174f7831a4c243fd9a92577d3a6413c9';
 
 export const TracksContext = createContext<DefaultTrackContext>({
 	tracks: {},
+	song: {},
 	async getApi() {},
-   searchInput: '',
-   setSearchInput(){},
+	searchInput: '',
+	setSearchInput() {},
 	async searchTracks(searchInput) {},
+	async searchTrackFromRapid(id) {},
 });
 
 const TracksContextProvider = ({ children }: ContextType) => {
-	const [tracks, setTracks] = useState({});
-	const [searchInput, setSearchInput] = useState('sia');
+	const [song, setSong] = useState({
+		id: '',
+		name: '',
+		href: '',
+		popularity: 0,
+		release_date: '',
+		album: { images: { height: 0, url: [] } },
+	});
+	const [tracks, setTracks] = useState({
+		id: '',
+		name: '',
+		href: '',
+		popularity: 0,
+		release_date: '',
+		album: { images: { height: 0, url: [] } },
+	});
+	const [searchInput, setSearchInput] = useState('bilie elish');
 	const [accesToken, setAccesToken] = useState('-');
 
 	const getApi = async () => {
@@ -31,7 +48,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			const res = await fetch(`https://accounts.spotify.com/api/token`, params);
 			const data = await res.json();
 			if (data.access_token) setAccesToken(data.access_token);
-         console.log(data)
+			console.log(data);
 			searchTracks(searchInput);
 		} catch (e: any) {
 			console.error(e.message);
@@ -58,10 +75,42 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			console.log(err.message);
 		}
 	};
-	console.log(searchInput)
+
+	const searchTrackFromRapid = async (
+		id: string = '4WNcduiCmDNfmTEz7JvmLv'
+	) => {
+		try {
+			const options = {
+				method: 'GET',
+				headers: {
+					'X-RapidAPI-Key':
+						'1145f1344bmshd017a5918cd108cp11def4jsn8eb51cc2a7bd',
+					'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
+				},
+			};
+			const response = await fetch(
+				`https://spotify23.p.rapidapi.com/tracks/?ids=${id}`,
+				options
+			);
+			const data = await response.json();
+			setSong(data.tracks);
+		} catch (err: any) {
+			console.log(err.message);
+		}
+	};
+	console.log(searchInput);
 	return (
 		<TracksContext.Provider
-			value={{ tracks, searchInput, setSearchInput, getApi, searchTracks }}
+			value={{
+				
+				song,
+				tracks,
+				searchInput,
+				setSearchInput,
+				getApi,
+				searchTracks,
+				searchTrackFromRapid,
+			}}
 		>
 			{children}
 		</TracksContext.Provider>

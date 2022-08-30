@@ -1,4 +1,4 @@
-import { MoreVert, Favorite, Share } from '@mui/icons-material';
+import { MoreVert } from '@mui/icons-material';
 import {
 	Card,
 	CardHeader,
@@ -8,25 +8,26 @@ import {
 	CardContent,
 	Typography,
 	CardActions,
-	Box,
-	Modal,
-	styled,
 } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import React from 'react';
-import { SingleTrackType } from '../types/tracks.type';
+import { SingleTrackType, SongsType } from '../types/tracks.type';
 
 type SongType = {
 	track: SingleTrackType;
-	// key: number;
-	setTrack: React.Dispatch<React.SetStateAction<SingleTrackType | null>>;
+	setTrack: React.Dispatch<React.SetStateAction<SongsType>>;
 	setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+	searchTrackFromRapid: (id?: string) => Promise<void>;
 };
 
-const Song = ({ track, setTrack, setOpenModal }: SongType) => {
+const Song = ({
+	track,
+	setTrack,
+	searchTrackFromRapid,
+	setOpenModal,
+}: SongType) => {
 	return (
 		<Card
-			// key={key}
 			sx={{
 				width: '31%',
 				maxWidth: 345,
@@ -35,6 +36,8 @@ const Song = ({ track, setTrack, setOpenModal }: SongType) => {
 				margin: 1,
 			}}
 			onClick={() => {
+				console.log(track.id)
+				searchTrackFromRapid(track.id);
 				setTrack(track);
 				setOpenModal(true);
 			}}
@@ -65,16 +68,10 @@ const Song = ({ track, setTrack, setOpenModal }: SongType) => {
 				</Typography>
 			</CardContent>
 			<CardActions>
-				<Typography >{track.popularity} popylarity</Typography>
-				{/* <IconButton aria-label='add to favorites'>
-					<Favorite />
-				</IconButton>
-				<IconButton aria-label='share'>
-					<Share />
-				</IconButton> */}
+				<Typography>{track.popularity} popylarity</Typography>
 			</CardActions>
 		</Card>
 	);
 };
 
-export default Song;
+export default React.memo(Song);

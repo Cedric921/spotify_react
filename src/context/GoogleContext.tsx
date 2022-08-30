@@ -44,6 +44,7 @@ const GoogleContextProvider = ({ children }: ContextType) => {
 
 	const logout = () => {
 		setUser({ email: '', name: '', picture: '' });
+		localStorage.removeItem('user');
 	};
 
 	const init = () => {
