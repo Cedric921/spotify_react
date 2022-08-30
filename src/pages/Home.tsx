@@ -32,7 +32,7 @@ const HomePage = ({ mode, setMode }: HomeType) => {
 				bgcolor={'background.default'}
 				color={'text.primary'}
 			>
-				<Asidebar mode={mode} setMode={setMode} />
+				<Asidebar />
 				<SongsPage />
 			</Stack>
 		</>

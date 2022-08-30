@@ -6,9 +6,6 @@ import TracksContextProvider from './context/TracksContext';
 import { GoogleContext } from './context/GoogleContext';
 import LoginPage from './pages/Login';
 
-//  a add routing to app, with --home --login --song
-
-// create  context for user auth
 
 const App: React.FC = () => {
 	const [mode, setMode] = useState<PaletteMode>('light');

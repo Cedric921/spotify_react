@@ -15,7 +15,7 @@ export const TracksContext = createContext<DefaultTrackContext>({
 
 const TracksContextProvider = ({ children }: ContextType) => {
 	const [tracks, setTracks] = useState({});
-	const [searchInput, setSearchInput] = useState('gims');
+	const [searchInput, setSearchInput] = useState('sia');
 	const [accesToken, setAccesToken] = useState('-');
 
 	const getApi = async () => {
@@ -38,7 +38,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 		}
 	};
 
-	const searchTracks = async (searchInput: string = 'gims') => {
+	const searchTracks = async (track: string = 'sia') => {
 		const params = {
 			method: 'GET',
 			headers: {
@@ -49,7 +49,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 
 		try {
 			const response = await fetch(
-				`https://api.spotify.com/v1/search?q=${searchInput}&type=album,track`,
+				`https://api.spotify.com/v1/search?q=${track}&type=album,track`,
 				params
 			);
 			const data = await response.json();

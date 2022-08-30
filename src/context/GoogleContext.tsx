@@ -64,4 +64,4 @@ const GoogleContextProvider = ({ children }: ContextType) => {
 	);
 };
 
-export default GoogleContextProvider;
+export default React.memo(GoogleContextProvider);

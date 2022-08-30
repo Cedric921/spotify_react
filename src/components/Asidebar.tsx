@@ -17,6 +17,7 @@ import { AsideType } from '../types/tracks.type';
 
 const StyledBox = styled(Box)({
 	height: '100%',
+	width: '20%',
 });
 
 const StyledStack = styled(Stack)({
@@ -25,7 +26,7 @@ const StyledStack = styled(Stack)({
 
 
 
-const Asidebar = ({ mode, setMode }: AsideType) => {
+const Asidebar = () => {
 	return (
 		<StyledStack
 			flex={1}
