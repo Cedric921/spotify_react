@@ -22,6 +22,7 @@ const StyledBox = styled(Box)({
 
 const StyledStack = styled(Stack)({
 	height: '100vh',
+
 });
 
 
@@ -32,10 +33,10 @@ const Asidebar = () => {
 			flex={1}
 			bgcolor={'Background.secondary'}
 			color={'text.primary'}
+			sx={{ display: { xs: 'none', sm: 'flex' } }}
 		>
 			<StyledBox
 				position='fixed'
-				// bgcolor={'background.default'}
 				color={'text.primary'}
 			>
 				<List>

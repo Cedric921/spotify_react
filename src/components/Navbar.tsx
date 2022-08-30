@@ -82,9 +82,9 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 				</SearchBar>
 				<Icons>
 					{mode == 'dark' ? (
-						<ModeNight color='info' onClick={() => setMode('light')} />
+						<LightMode color='info' onClick={() => setMode('light')} />
 					) : (
-						<LightMode color='inherit' onClick={() => setMode('dark')} />
+						<ModeNight onClick={() => setMode('dark')} />
 					)}
 					<Typography>{user.name && user.name}</Typography>
 					<Avatar
@@ -95,7 +95,6 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 					/>
 				</Icons>
 				<UserBox>
-					<Typography>{user.name && user.name}</Typography>
 					<Avatar
 						src={user.picture && user.picture}
 						alt='Avatar'
@@ -126,6 +125,21 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 				<MenuItem>
 					<Settings sx={{ marginRight: 2 }} />
 					Settings
+				</MenuItem>
+				<MenuItem onClick={() => setMode(mode == 'dark' ? 'light' : 'dark')}>
+					{mode == 'dark' ? (
+						<LightMode
+							color='info'
+							onClick={() => setMode('light')}
+							sx={{ marginRight: 2 }}
+						/>
+					) : (
+						<ModeNight
+							onClick={() => setMode('dark')}
+							sx={{ marginRight: 2 }}
+						/>
+					)}
+					Mode
 				</MenuItem>
 			</Menu>
 		</AppBar>
