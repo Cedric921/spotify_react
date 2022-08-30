@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
 import GoogleContextProvider from './context/GoogleContext';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.render(
 	<React.StrictMode>
 		<GoogleContextProvider>
 			<App />
 		</GoogleContextProvider>
-	</React.StrictMode>
+	</React.StrictMode>,
+	document.getElementById('root')!
 );
