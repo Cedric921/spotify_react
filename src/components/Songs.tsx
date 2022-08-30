@@ -12,10 +12,10 @@ import {
 	Stack,
 	Typography,
 } from '@mui/material';
-import { red } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 import React, { useContext } from 'react';
 import { TracksContext } from '../context/TracksContext';
-import { SongsType, SingleTrackType } from '../types/tracks.type';
+import {  SingleTrackType } from '../types/tracks.type';
 
 const SongsPage = (/*{ tracks }: SongsType*/) => {
 	const { tracks } = useContext(TracksContext);
@@ -23,49 +23,62 @@ const SongsPage = (/*{ tracks }: SongsType*/) => {
 		<Box flex={4} bgcolor={'background.primary'} color={'text.primary'}>
 			{tracks ? (
 				<>
-					<Typography textAlign='center' fontSize='small'>
+					<Typography variant='h4' textAlign='center' margin={4}>
 						Last musics
 					</Typography>
-					<Grid container spacing={2} flexWrap='wrap'>
+					<Grid
+						container
+						justifyContent='flex-end'
+						spacing={2}
+						flexWrap='wrap'
+						sx={{ width: '100%' }}
+					>
 						{tracks.items?.map((track: SingleTrackType, i: number) => (
-								<Card
-									 sx={{ width:300, maxWidth: 345, minWidth: 300, boxShadow: 5, margin: 1 }}
-								>
-									<CardHeader
-										avatar={
-											<Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-												{track.name.split('')[0]}
-											</Avatar>
-										}
-										action={
-											<IconButton aria-label='settings'>
-												<MoreVert />
-											</IconButton>
-										}
-										title={track.name}
-										subheader={track.release_date}
-									/>
-									<CardMedia
-										component='img'
-										height='194'
-										image={track.album.images[0].url}
-										alt={track.name}
-									/>
-									<CardContent>
-										<Typography
-											variant='body2'
-											color='text.secondary'
-										></Typography>
-									</CardContent>
-									<CardActions disableSpacing>
-										<IconButton aria-label='add to favorites'>
-											<Favorite />
+							<Card
+								key={i}
+								sx={{
+									width: '30%',
+									maxWidth: 345,
+									minWidth: 300,
+									boxShadow: 5,
+									margin: 1,
+								}}
+							>
+								<CardHeader
+									avatar={
+										<Avatar sx={{ bgcolor: grey[500] }} aria-label='recipe'>
+											{track.name.split('')[0]}
+										</Avatar>
+									}
+									action={
+										<IconButton aria-label='settings'>
+											<MoreVert />
 										</IconButton>
-										<IconButton aria-label='share'>
-											<Share />
-										</IconButton>
-									</CardActions>
-								</Card>
+									}
+									title={track.name}
+									subheader={track.release_date}
+								/>
+								<CardMedia
+									component='img'
+									height='194'
+									image={track.album.images[0].url}
+									alt={track.name}
+								/>
+								<CardContent>
+									<Typography variant='body2' color='text.secondary'>
+										{track.name}
+									</Typography>
+								</CardContent>
+								<CardActions>
+										{track.popularity}
+									<IconButton aria-label='add to favorites'>
+										<Favorite />
+									</IconButton>
+									<IconButton aria-label='share'>
+										<Share />
+									</IconButton>
+								</CardActions>
+							</Card>
 							// <Grid
 							// 	item
 							// 	xs={4}

@@ -8,6 +8,7 @@ export type SongsType = {
 export type SingleTrackType = {
 	name: string;
 	href: string;
+	popularity: number;
 	release_date: string;
 	album: { images: { height: number; url: string }[] };
 };
