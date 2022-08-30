@@ -39,7 +39,7 @@ const SongsPage = () => {
 						</Typography>
 						<Grid
 							container
-							justifyContent='flex-end'
+							justifyContent='center'
 							spacing={2}
 							flexWrap='wrap'
 							sx={{ width: '100%' }}
@@ -76,7 +76,7 @@ const SongsPage = () => {
 			>
 				<Box
 					width={400}
-					height={600}
+					height={400}
 					p={3}
 					bgcolor={'background.default'}
 					color={'text.primary'}
@@ -87,25 +87,26 @@ const SongsPage = () => {
 					<Typography
 						variant='h6'
 						textAlign='center'
-						color='gray'
-						paddingBottom={3}
+						color='primary'
+						paddingBottom={2}
 					>
 						{track?.name}
 					</Typography>
 					{song[0] && (
-						<Box sx={{ width: '100%' }}>
+						<Box sx={{ width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
 							<img
 								src={`${song[0]?.album?.images[0].url}?w=400&h=164&fit=crop&auto=format`}
 								srcSet={`${song[0]?.album?.images[0].url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
 								alt={song[0]?.name}
 								loading='lazy'
-								width={'10%'}
+								width={'75%'}
 							/>
 
 							<ReactPlayer
 								url={song[0].preview_url}
 								width='100%'
-								playIcon={<PlayArrow />}
+								height={'50px'}
+								// playIcon={<PlayArrow />}
 								loop
 								playing
 								controls

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
 const CustomBox = styled(Box)(({ theme }) => ({
 	width: '100vw',
@@ -12,6 +13,7 @@ const CustomBox = styled(Box)(({ theme }) => ({
 }));
 
 const LoginPage: React.FC = () => {
+
 	return (
 		<CustomBox>
 			<div id='googleSignInButton'></div>
