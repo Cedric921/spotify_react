@@ -1,4 +1,10 @@
-import { ModeNight, Search } from '@mui/icons-material';
+import {
+	LightMode,
+	Logout,
+	ModeNight,
+	Search,
+	Settings,
+} from '@mui/icons-material';
 import {
 	AppBar,
 	Button,
@@ -51,8 +57,10 @@ const UserBox = styled(Box)(({ theme }) => ({
 
 const Navbar = ({ mode, setMode }: AsideType) => {
 	const [openMenu, setOpenMenu] = useState(false);
-	const { searchTracks, setSearchInput } = useContext(TracksContext);
+	const { searchTracks, searchInput, setSearchInput } =
+		useContext(TracksContext);
 	const { user, logout } = useContext(GoogleContext);
+
 	return (
 		<AppBar position='sticky'>
 			<StyledToolbar>
@@ -61,20 +69,23 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 					<InputBase
 						placeholder='Search track'
 						fullWidth
-						onChange={(e) => setSearchInput(e.target.value)}
+						onChange={(e) => {
+							setSearchInput(e.target.value);
+							searchTracks(searchInput);
+						}}
 						onKeyUp={(e) => {
 							if (e.key === 'Enter') {
-								// search();
-								searchTracks(e.target.value);
+								searchTracks(searchInput);
 							}
 						}}
 					/>
 				</SearchBar>
 				<Icons>
-					<ModeNight
-						color={mode == 'dark' ? 'info' : 'inherit'}
-						onClick={() => setMode(mode == 'dark' ? 'light' : 'dark')}
-					/>
+					{mode == 'dark' ? (
+						<ModeNight color='info' onClick={() => setMode('light')} />
+					) : (
+						<LightMode color='inherit' onClick={() => setMode('dark')} />
+					)}
 					<Typography>{user.name && user.name}</Typography>
 					<Avatar
 						src={user.picture && user.picture}
@@ -108,8 +119,14 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 					horizontal: 'left',
 				}}
 			>
-				<MenuItem onClick={() => logout()}>Log out</MenuItem>
-				<MenuItem>Settings</MenuItem>
+				<MenuItem onClick={() => logout()}>
+					<Logout sx={{ marginRight: 2 }} />
+					Log out
+				</MenuItem>
+				<MenuItem>
+					<Settings sx={{ marginRight: 2 }} />
+					Settings
+				</MenuItem>
 			</Menu>
 		</AppBar>
 	);

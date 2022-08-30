@@ -58,6 +58,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			console.log(err.message);
 		}
 	};
+	console.log(searchInput)
 	return (
 		<TracksContext.Provider
 			value={{ tracks, searchInput, setSearchInput, getApi, searchTracks }}

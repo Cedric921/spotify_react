@@ -28,10 +28,10 @@ const Song = ({ track, setTrack, setOpenModal }: SongType) => {
 		<Card
 			// key={key}
 			sx={{
-				width: '30%',
+				width: '31%',
 				maxWidth: 345,
 				minWidth: 300,
-				boxShadow: 5,
+				boxShadow: 15,
 				margin: 1,
 			}}
 			onClick={() => {
@@ -65,13 +65,13 @@ const Song = ({ track, setTrack, setOpenModal }: SongType) => {
 				</Typography>
 			</CardContent>
 			<CardActions>
-				{track.popularity}
-				<IconButton aria-label='add to favorites'>
+				<Typography >{track.popularity} popylarity</Typography>
+				{/* <IconButton aria-label='add to favorites'>
 					<Favorite />
 				</IconButton>
 				<IconButton aria-label='share'>
 					<Share />
-				</IconButton>
+				</IconButton> */}
 			</CardActions>
 		</Card>
 	);
