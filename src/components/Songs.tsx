@@ -1,4 +1,3 @@
-import { PlayArrow } from '@mui/icons-material';
 import { Box, Grid, Modal, Stack, styled, Typography } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';

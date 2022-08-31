@@ -1,4 +1,4 @@
-import { Album, Group, Home, ModeNight } from '@mui/icons-material';
+import { Album, Group, Home } from '@mui/icons-material';
 import {
 	Box,
 	List,
@@ -6,14 +6,12 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
-	Switch,
 	styled,
 	Stack,
-	ListItemAvatar,
+	
 	Avatar,
 } from '@mui/material';
 import React from 'react';
-import { AsideType } from '../types/tracks.type';
 
 const StyledBox = styled(Box)({
 	height: '100%',

@@ -55,7 +55,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 		}
 	};
 
-	const searchTracks = async (track: string = 'sia') => {
+	const searchTracks = async (track = 'sia') => {
 		const params = {
 			method: 'GET',
 			headers: {
@@ -85,7 +85,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 	};
 
 	const searchTrackFromRapid = async (
-		id: string = '4WNcduiCmDNfmTEz7JvmLv'
+		id = '4WNcduiCmDNfmTEz7JvmLv'
 	) => {
 		try {
 			const options = {

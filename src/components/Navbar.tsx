@@ -2,12 +2,10 @@ import {
 	LightMode,
 	Logout,
 	ModeNight,
-	Search,
 	Settings,
 } from '@mui/icons-material';
 import {
 	AppBar,
-	Button,
 	InputBase,
 	styled,
 	Toolbar,
