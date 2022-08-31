@@ -23,13 +23,10 @@ const App: React.FC = () => {
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<TracksContextProvider>
-				{user.email !== '' ? (
-					<>
-						<Home mode={mode} setMode={setMode} />
-					</>
-				) : (
-					<LoginPage />
-				)}
+				<Routes>
+					<Route path='/login' element={<LoginPage />} />
+					<Route path='/' element={<Home mode={mode} setMode={setMode} />} />
+				</Routes>
 			</TracksContextProvider>
 		</ThemeProvider>
 	);

@@ -4,6 +4,7 @@ import { DefaultUserContext, UserType } from '../types/tracks.type';
 import jwt_decode from 'jwt-decode';
 import { ContextType } from '../types/tracks.type';
 
+
 export const GoogleContext = createContext<DefaultUserContext>({
 	user: { email: '', name: '', picture: '' },
 	init() {},

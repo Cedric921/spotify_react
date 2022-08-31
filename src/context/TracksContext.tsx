@@ -55,7 +55,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 		}
 	};
 
-	const searchTracks = async (track: string = 'sia') => {
+	const searchTracks = async (track = 'sia') => {
 		const params = {
 			method: 'GET',
 			headers: {
@@ -71,13 +71,21 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			);
 			const data = await response.json();
 			setTracks(data.tracks);
+			//add all tracks to local db
+			localStorage.removeItem('spotifyTracks');
+			localStorage.setItem('spotifyTracks', JSON.stringify(data));
 		} catch (err: any) {
 			console.log(err.message);
+			//get all tracks from localStorage
+			const localTracks = JSON.parse(localStorage.getItem('spotifyTracks')!);
+			if (localTracks) setTracks(localTracks.tracks);
+			console.log("from local", localTracks);
+			
 		}
 	};
 
 	const searchTrackFromRapid = async (
-		id: string = '4WNcduiCmDNfmTEz7JvmLv'
+		id = '4WNcduiCmDNfmTEz7JvmLv'
 	) => {
 		try {
 			const options = {
@@ -94,15 +102,19 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			);
 			const data = await response.json();
 			setSong(data.tracks);
+
+			localStorage.setItem('songLocal', JSON.stringify(data));
 		} catch (err: any) {
 			console.log(err.message);
+			// on recupere les musiques locales
+			const songLocal = JSON.parse(localStorage.getItem('songLocal')!);
+			if (songLocal) setSong(songLocal.tracks);
 		}
 	};
 	console.log(searchInput);
 	return (
 		<TracksContext.Provider
 			value={{
-				
 				song,
 				tracks,
 				searchInput,
