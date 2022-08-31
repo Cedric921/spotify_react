@@ -1,4 +1,4 @@
-import { Home, ModeNight } from '@mui/icons-material';
+import { Album, Group, Home, ModeNight } from '@mui/icons-material';
 import {
 	Box,
 	List,
@@ -9,11 +9,11 @@ import {
 	Switch,
 	styled,
 	Stack,
+	ListItemAvatar,
+	Avatar,
 } from '@mui/material';
 import React from 'react';
 import { AsideType } from '../types/tracks.type';
-
-
 
 const StyledBox = styled(Box)({
 	height: '100%',
@@ -22,10 +22,7 @@ const StyledBox = styled(Box)({
 
 const StyledStack = styled(Stack)({
 	height: '100vh',
-
 });
-
-
 
 const Asidebar = () => {
 	return (
@@ -35,17 +32,36 @@ const Asidebar = () => {
 			color={'text.primary'}
 			sx={{ display: { xs: 'none', sm: 'flex' } }}
 		>
-			<StyledBox
-				position='fixed'
-				color={'text.primary'}
-			>
+			<StyledBox position='fixed' color={'text.primary'}>
 				<List>
 					<ListItem disablePadding>
 						<ListItemButton component='a' href='#home'>
 							<ListItemIcon>
-								<Home />
+								<Avatar>
+									<Home />
+								</Avatar>
 							</ListItemIcon>
 							<ListItemText primary='Homepage' />
+						</ListItemButton>
+					</ListItem>
+					<ListItem disablePadding>
+						<ListItemButton component='a' href='#album'>
+							<ListItemIcon>
+								<Avatar>
+									<Album />
+								</Avatar>
+							</ListItemIcon>
+							<ListItemText primary='Album' />
+						</ListItemButton>
+					</ListItem>
+					<ListItem disablePadding>
+						<ListItemButton component='a' href='#artist'>
+							<ListItemIcon>
+								<Avatar>
+									<Group />
+								</Avatar>
+							</ListItemIcon>
+							<ListItemText primary='Artists' />
 						</ListItemButton>
 					</ListItem>
 				</List>

@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { Box } from '@mui/material';
-import React, { useState } from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import React, { useContext, useState } from 'react';
+import { GoogleContext } from '../context/GoogleContext';
+import { Navigate } from 'react-router-dom';
 
 const CustomBox = styled(Box)(({ theme }) => ({
 	width: '100vw',
@@ -13,11 +14,18 @@ const CustomBox = styled(Box)(({ theme }) => ({
 }));
 
 const LoginPage: React.FC = () => {
+	const { user } = useContext(GoogleContext);
 
 	return (
-		<CustomBox>
-			<div id='googleSignInButton'></div>
-		</CustomBox>
+		<>
+			{user.email == '' ? (
+				<CustomBox>
+					<div id='googleSignInButton'></div>
+				</CustomBox>
+			) : (
+				<Navigate to='/' replace/>
+			)}
+		</>
 	);
 };
 

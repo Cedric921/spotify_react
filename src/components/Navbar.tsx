@@ -18,6 +18,7 @@ import {
 	MenuItem,
 } from '@mui/material';
 import React, { useContext, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { GoogleContext } from '../context/GoogleContext';
 import { TracksContext } from '../context/TracksContext';
 import { AsideType } from '../types/tracks.type';
@@ -118,7 +119,12 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 					horizontal: 'left',
 				}}
 			>
-				<MenuItem onClick={() => logout()}>
+				<MenuItem
+					onClick={() => {
+						<Navigate to='/login' />;
+						logout();
+					}}
+				>
 					<Logout sx={{ marginRight: 2 }} />
 					Log out
 				</MenuItem>
