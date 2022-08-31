@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.10.2",
     "@mui/material": "^5.10.2",
     "@types/google-one-tap": "^1.2.1",
+    "cypress": "^10.7.0",
     "jwt-decode": "^3.1.2",
     "react-google-login": "^5.2.2",
     "react-player": "^2.10.1",
