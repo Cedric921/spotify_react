@@ -108,7 +108,7 @@ const SongsPage = () => {
 								height={'50px'}
 								// playIcon={<PlayArrow />}
 								loop
-								playing
+									playing
 								controls
 							/>
 						</Box>
