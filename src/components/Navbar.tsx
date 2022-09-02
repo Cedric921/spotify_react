@@ -3,6 +3,7 @@ import {
 	Logout,
 	ModeNight,
 	Settings,
+	Search,
 } from '@mui/icons-material';
 import {
 	AppBar,
@@ -32,6 +33,8 @@ const SearchBar = styled('div')(({ theme }) => ({
 	borderRadius: theme.shape.borderRadius,
 	color: 'grey',
 	width: '40%',
+	display: 'flex',
+	alignItem: 'center',
 }));
 
 const Icons = styled(Box)(({ theme }) => ({
@@ -64,8 +67,9 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 		<AppBar position='sticky'>
 			<StyledToolbar>
 				<Typography>Music search</Typography>
-				<SearchBar color={'text.primary'}>
+				<SearchBar>
 					<InputBase
+						color='primary'
 						placeholder='Search track'
 						fullWidth
 						onChange={(e) => {
@@ -78,6 +82,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 							}
 						}}
 					/>
+					<Search  width='100px'/>
 				</SearchBar>
 				<Icons>
 					{mode == 'dark' ? (

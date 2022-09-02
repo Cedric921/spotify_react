@@ -27,15 +27,22 @@ const SongsPage = () => {
 	useEffect(() => {
 		searchTracks(searchInput);
 	}, []);
-	console.log('track, song', track, song);
+
+	const StyledTypography = styled(Typography)(({ theme }) => ({
+		padding: '10px',
+		color: '#d9f4ff',
+		textShadow: '0px 0px 10px  #000000',
+		// width: '100%',
+	}));
+
 	return (
 		<>
 			<Box flex={4} bgcolor={'background.primary'} color={'text.primary'}>
 				{tracks ? (
 					<>
-						<Typography variant='h4' textAlign='center' margin={4}>
-							Last musics
-						</Typography>
+						<StyledTypography variant='h3' textAlign='right' margin={4}>
+							last musics
+						</StyledTypography>
 						<Grid
 							container
 							justifyContent='center'
@@ -91,8 +98,15 @@ const SongsPage = () => {
 					>
 						{track?.name}
 					</Typography>
-					{song[0] && (
-						<Box sx={{ width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+					{song && song[0] && (
+						<Box
+							sx={{
+								width: '100%',
+								display: 'flex',
+								alignItems: 'center',
+								flexDirection: 'column',
+							}}
+						>
 							<img
 								src={`${song[0]?.album?.images[0].url}?w=400&h=164&fit=crop&auto=format`}
 								srcSet={`${song[0]?.album?.images[0].url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -107,7 +121,7 @@ const SongsPage = () => {
 								height={'50px'}
 								// playIcon={<PlayArrow />}
 								loop
-									playing
+								playing
 								controls
 							/>
 						</Box>

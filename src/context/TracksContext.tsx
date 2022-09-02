@@ -35,6 +35,10 @@ const TracksContextProvider = ({ children }: ContextType) => {
 	const [searchInput, setSearchInput] = useState('bilie elish');
 	const [accesToken, setAccesToken] = useState('-');
 
+	/**
+	 * Function to get the accesToken from spotify
+	 * @return void
+	 */
 	const getApi = async () => {
 		const params = {
 			method: 'POST',
@@ -79,14 +83,12 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			//get all tracks from localStorage
 			const localTracks = JSON.parse(localStorage.getItem('spotifyTracks')!);
 			if (localTracks) setTracks(localTracks.tracks);
-			console.log("from local", localTracks);
-			
+			console.log('from local', localTracks);
 		}
 	};
 
-	const searchTrackFromRapid = async (
-		id = '4WNcduiCmDNfmTEz7JvmLv'
-	) => {
+
+	const searchTrackFromRapid = async (id = '4WNcduiCmDNfmTEz7JvmLv') => {
 		try {
 			const options = {
 				method: 'GET',

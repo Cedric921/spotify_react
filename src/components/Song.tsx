@@ -8,6 +8,7 @@ import {
 	CardContent,
 	Typography,
 	CardActions,
+	styled,
 } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import React from 'react';
@@ -20,6 +21,8 @@ type SongType = {
 	searchTrackFromRapid: (id?: string) => Promise<void>;
 };
 
+
+
 const Song = ({
 	track,
 	setTrack,
@@ -29,20 +32,22 @@ const Song = ({
 	return (
 		<Card
 			sx={{
-				width: '31%',
-				maxWidth: 345,
-				minWidth: 300,
+				width: '25%',
+				maxWidth: 245,
+				minWidth: 200,
 				boxShadow: 15,
 				margin: 1,
+				fontSize: 10,
 			}}
 			onClick={() => {
-				console.log(track.id)
+				console.log(track.id);
 				searchTrackFromRapid(track.id);
 				setTrack(track);
 				setOpenModal(true);
 			}}
 		>
 			<CardHeader
+				fontSize={10}
 				avatar={
 					<Avatar sx={{ bgcolor: grey[500] }} aria-label='recipe'>
 						{track.name.split('')[0]}

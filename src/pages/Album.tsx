@@ -1,13 +1,19 @@
 import { Stack } from '@mui/system';
-import React,{ useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Asidebar from '../components/Asidebar';
+import Navbar from '../components/Navbar';
 import SongsPage from '../components/Songs';
+import { Navigate } from 'react-router-dom';
 
 //context
 import { TracksContext } from '../context/TracksContext';
+import { GoogleContext } from '../context/GoogleContext';
+
+import { HomeType } from '../types/tracks.type';
+import { Grid } from '@mui/material';
 
 // display adbum from context
-const HomePage = () => {
+const AlbumsPage = () => {
 	const { getApi, searchTrackFromRapid } = useContext(TracksContext);
 
 	useEffect(() => {
@@ -25,9 +31,12 @@ const HomePage = () => {
 			color={'text.primary'}
 		>
 			<Asidebar />
-			<SongsPage />
+			{/* <SongsPage /> */}
+         <Grid justifyContent='center' alignItems='center' height='100%' bgcolor='primary'>
+            <h2>album</h2>
+         </Grid>
 		</Stack>
 	);
 };
 
-export default HomePage;
+export default AlbumsPage;
