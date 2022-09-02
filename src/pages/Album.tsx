@@ -7,9 +7,7 @@ import { Navigate } from 'react-router-dom';
 
 //context
 import { TracksContext } from '../context/TracksContext';
-import { GoogleContext } from '../context/GoogleContext';
-
-import { HomeType } from '../types/tracks.type';
+import Albums from '../components/Albums';
 import { Grid } from '@mui/material';
 
 // display adbum from context
@@ -32,9 +30,15 @@ const AlbumsPage = () => {
 		>
 			<Asidebar />
 			{/* <SongsPage /> */}
-         <Grid justifyContent='center' alignItems='center' height='100%' bgcolor='primary'>
-            <h2>album</h2>
-         </Grid>
+         {/* <Grid
+            flex={4}
+				justifyContent='center'
+				alignItems='center'
+				height='100%'
+				bgcolor='primary'
+			> */}
+				<Albums />
+			{/* </Grid> */}
 		</Stack>
 	);
 };

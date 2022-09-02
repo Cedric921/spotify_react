@@ -33,6 +33,7 @@ const SearchBar = styled('div')(({ theme }) => ({
 	borderRadius: theme.shape.borderRadius,
 	color: 'grey',
 	width: '40%',
+	maxWidth: '400px',
 	display: 'flex',
 	alignItem: 'center',
 }));
@@ -82,7 +83,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 							}
 						}}
 					/>
-					<Search  width='100px'/>
+					<Search  width='100px' />
 				</SearchBar>
 				<Icons>
 					{mode == 'dark' ? (

@@ -38,15 +38,15 @@ const SongsPage = () => {
 	return (
 		<>
 			<Box flex={4} bgcolor={'background.primary'} color={'text.primary'}>
+				<StyledTypography variant='h3' textAlign='center' margin={4}>
+					last musics
+				</StyledTypography>
 				{tracks ? (
 					<>
-						<StyledTypography variant='h3' textAlign='right' margin={4}>
-							last musics
-						</StyledTypography>
 						<Grid
 							container
 							justifyContent='center'
-							spacing={2}
+							spacing={3}
 							flexWrap='wrap'
 							sx={{ width: '100%' }}
 						>

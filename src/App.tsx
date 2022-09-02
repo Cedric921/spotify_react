@@ -20,9 +20,9 @@ const App: React.FC = () => {
 	});
 
 	useEffect(() => {
-		console.log(user.email);
 		
 		if (!checkUser()) init();
+		console.log(user.email);
 	}, []);
 
 	return (

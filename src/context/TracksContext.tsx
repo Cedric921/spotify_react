@@ -52,7 +52,6 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			const res = await fetch(`https://accounts.spotify.com/api/token`, params);
 			const data = await res.json();
 			if (data.access_token) setAccesToken(data.access_token);
-			console.log(data);
 			searchTracks(searchInput);
 		} catch (e: any) {
 			console.error(e.message);
@@ -75,6 +74,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			);
 			const data = await response.json();
 			setTracks(data.tracks);
+			console.log(data)
 			//add all tracks to local db
 			localStorage.removeItem('spotifyTracks');
 			localStorage.setItem('spotifyTracks', JSON.stringify(data));
@@ -113,7 +113,6 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			if (songLocal) setSong(songLocal.tracks);
 		}
 	};
-	console.log(searchInput);
 	return (
 		<TracksContext.Provider
 			value={{
