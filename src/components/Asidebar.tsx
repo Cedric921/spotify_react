@@ -25,6 +25,7 @@ const StyledStack = styled(Stack)({
 const StyledLink = styled(Link)(({ theme }) => ({
 	textDecoration: 'none',
 	color: theme.palette.primary.dark,
+	width: '100%',
 }));
 
 const Asidebar = () => {
@@ -37,7 +38,7 @@ const Asidebar = () => {
 		>
 			<StyledBox position='fixed' color={'text.primary'}>
 				<List>
-					<ListItem disablePadding sx={{ color: "text.primary"}}>
+					<ListItem disablePadding sx={{ color: "text.primary", width: "100%"}}>
 						<StyledLink to='/'>
 							<ListItemButton component='span'>
 								<ListItemIcon>
@@ -45,7 +46,7 @@ const Asidebar = () => {
 										<Home />
 									</Avatar>
 								</ListItemIcon>
-								<ListItemText primary='Homepage' color='red' />
+								<ListItemText primary='Search' color='red' />
 							</ListItemButton>
 						</StyledLink>
 					</ListItem>

@@ -112,7 +112,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 
 		try {
 			const response = await fetch(
-				`https://api.spotify.com/v1/browse/new-releases`,
+				`https://api.spotify.com/v1/search?q=${track}&type=album`,
 				params
 			);
 			const data = await response.json();

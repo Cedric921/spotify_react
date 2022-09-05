@@ -16,8 +16,7 @@ const SongsPage = () => {
 		release_date: '',
 		album: { images: [{ height: 0, url: '' }] },
 	});
-	const { tracks, searchTracks, song, searchInput } =
-		useContext(TracksContext);
+	const { tracks, searchTracks, song, searchInput } = useContext(TracksContext);
 	useEffect(() => {
 		searchTracks(searchInput);
 	}, []);
@@ -59,13 +58,16 @@ const SongsPage = () => {
 						justifyContent='center'
 						alignItems='center'
 						height={100}
-						sx={{ width: '100%', height: '100%', bgcolor: 'gray' }}
+						sx={{
+							width: '100%',
+							height: '100%',
+							bgcolor: 'background.primary',
+						}}
 					>
-						<Box>No song to show</Box>
+						<Typography variant='h3'>No song to show</Typography>
 					</Stack>
 				)}
 			</Box>
-			
 		</>
 	);
 };

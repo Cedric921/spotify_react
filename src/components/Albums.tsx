@@ -14,7 +14,7 @@ const Albums = () => {
 	return (
 		<Box flex={4} bgcolor={'background.primary'} color={'text.primary'}>
 			<StyledTypography variant='h3' textAlign='center' margin={4}>
-				last musics
+				last albums
 			</StyledTypography>
 			<Grid container justifyContent='center' spacing={3} flexWrap='wrap'>
 				{albums && albums.map((album, i) => <Album album={album} key={i} />)}

@@ -86,7 +86,7 @@ const Song = ({ track, setTrack }: SongType) => {
 			>
 				<Box
 					width={500}
-					height={500}
+					height={380}
 					p={0}
 					bgcolor={'background.default'}
 					color={'text.primary'}
@@ -96,7 +96,7 @@ const Song = ({ track, setTrack }: SongType) => {
 				>
 					<iframe
 						style={{ borderRadius: '12px' }}
-						src={`https://open.spotify.com/embed/artist/${track.artists[0].id}?utm_source=generator`}
+						src={`https://open.spotify.com/embed/track/${track.id}?utm_source=generator`}
 						width='100%'
 						height='100%'
 						frameBorder='0'
