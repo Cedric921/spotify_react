@@ -60,7 +60,7 @@ const UserBox = styled(Box)(({ theme }) => ({
 
 const Navbar = ({ mode, setMode }: AsideType) => {
 	const [openMenu, setOpenMenu] = useState(false);
-	const { searchTracks, searchInput, setSearchInput, searchAlbums } =
+	const { searchTracks, searchInput, setSearchInput } =
 		useContext(TracksContext);
 	const { user, logout } = useContext(GoogleContext);
 
@@ -76,7 +76,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 						onChange={(e) => {
 							setSearchInput(e.target.value);
 							searchTracks(searchInput);
-							searchAlbums(searchInput);
+							// searchAlbums(searchInput);
 						}}
 						onKeyUp={(e) => {
 							if (e.key === 'Enter') {

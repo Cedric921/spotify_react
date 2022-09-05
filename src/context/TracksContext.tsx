@@ -13,7 +13,6 @@ export const TracksContext = createContext<DefaultTrackContext>({
 	searchInput: '',
 	setSearchInput() {},
 	async searchTracks(searchInput) {},
-	async searchAlbums(id) {},
 });
 
 const TracksContextProvider = ({ children }: ContextType) => {
@@ -66,7 +65,6 @@ const TracksContextProvider = ({ children }: ContextType) => {
 				setAccesToken(data.access_token);
 			}
 			searchTracks(searchInput);
-			searchAlbums(searchInput);
 		} catch (e: any) {
 			console.error(e.message);
 		}
@@ -87,7 +85,10 @@ const TracksContextProvider = ({ children }: ContextType) => {
 				params
 			);
 			const data = await response.json();
-			setTracks(data.tracks);
+			if (data) {
+				setTracks(data.tracks);
+				setAlbums(data.albums.items);
+			}
 			//add all tracks to local db
 			localStorage.removeItem('spotifyTracks');
 			localStorage.setItem('spotifyTracks', JSON.stringify(data));
@@ -96,30 +97,6 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			//get all tracks from localStorage
 			const localTracks = JSON.parse(localStorage.getItem('spotifyTracks')!);
 			if (localTracks) setTracks(localTracks.tracks);
-		}
-	};
-	// useEffect(() => {
-	// 	searchAlbums();
-	// }, [accesToken]);
-
-	const searchAlbums = async (track = 'sia') => {
-		const params = {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + accesToken,
-			},
-		};
-
-		try {
-			const response = await fetch(
-				`https://api.spotify.com/v1/search?q=${track}&type=album`,
-				params
-			);
-			const data = await response.json();
-			if (data) setAlbums(data.albums.items);
-		} catch (err: any) {
-			console.log(err.message);
 		}
 	};
 
@@ -133,8 +110,6 @@ const TracksContextProvider = ({ children }: ContextType) => {
 				setSearchInput,
 				getApi,
 				searchTracks,
-				searchAlbums,
-				// searchTrackFromRapid,
 			}}
 		>
 			{children}
