@@ -12,10 +12,9 @@ import { Grid } from '@mui/material';
 
 // display adbum from context
 const AlbumsPage = () => {
-	const { getApi, searchTrackFromRapid } = useContext(TracksContext);
+	const { getApi } = useContext(TracksContext);
 
 	useEffect(() => {
-		searchTrackFromRapid();
 		getApi();
 	}, []);
 
@@ -30,14 +29,14 @@ const AlbumsPage = () => {
 		>
 			<Asidebar />
 			{/* <SongsPage /> */}
-         {/* <Grid
+			{/* <Grid
             flex={4}
 				justifyContent='center'
 				alignItems='center'
 				height='100%'
 				bgcolor='primary'
 			> */}
-				<Albums />
+			<Albums />
 			{/* </Grid> */}
 		</Stack>
 	);

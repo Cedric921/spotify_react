@@ -8,10 +8,9 @@ import { TracksContext } from '../context/TracksContext';
 
 // display adbum from context
 const HomePage = () => {
-	const { getApi, searchTrackFromRapid } = useContext(TracksContext);
+	const { getApi } = useContext(TracksContext);
 
 	useEffect(() => {
-		searchTrackFromRapid();
 		getApi();
 	}, []);
 
