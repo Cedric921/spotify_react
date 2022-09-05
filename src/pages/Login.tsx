@@ -23,8 +23,8 @@ const LoginPage: React.FC = () => {
 					<div id='googleSignInButton'></div>
 				</CustomBox>
 			) : (
-				// <Navigate to='/' replace/>
-					null
+				<Navigate to='/' replace/>
+					// null
 			)}
 		</>
 	);

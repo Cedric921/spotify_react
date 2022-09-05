@@ -65,6 +65,12 @@ const SongsPage = () => {
 						}}
 					>
 						<Typography variant='h3'>No song to show</Typography>
+						<a
+							href='https://www.flaticon.com/free-icons/loading'
+							title='loading icons'
+						>
+							Loading icons created by Pixel perfect - Flaticon
+						</a>
 					</Stack>
 				)}
 			</Box>

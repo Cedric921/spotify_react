@@ -60,7 +60,7 @@ const UserBox = styled(Box)(({ theme }) => ({
 
 const Navbar = ({ mode, setMode }: AsideType) => {
 	const [openMenu, setOpenMenu] = useState(false);
-	const { searchTracks, searchInput, setSearchInput } =
+	const { searchTracks, searchInput, setSearchInput, searchAlbums } =
 		useContext(TracksContext);
 	const { user, logout } = useContext(GoogleContext);
 
@@ -76,6 +76,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 						onChange={(e) => {
 							setSearchInput(e.target.value);
 							searchTracks(searchInput);
+							searchAlbums(searchInput);
 						}}
 						onKeyUp={(e) => {
 							if (e.key === 'Enter') {
@@ -83,7 +84,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 							}
 						}}
 					/>
-					<Search  width='100px' />
+					<Search width='100px' />
 				</SearchBar>
 				<Icons>
 					{mode == 'dark' ? (
@@ -114,6 +115,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 				// anchorEl={el}
 				open={openMenu}
 				onClose={() => setOpenMenu(false)}
+				// anchorEl={() => undefined}
 				anchorOrigin={{
 					vertical: 'top',
 					horizontal: 'right',
@@ -125,8 +127,8 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 			>
 				<MenuItem
 					onClick={() => {
-						<Navigate to='/login' />;
 						logout();
+						<Navigate to='/login' />;
 					}}
 				>
 					<Logout sx={{ marginRight: 2 }} />

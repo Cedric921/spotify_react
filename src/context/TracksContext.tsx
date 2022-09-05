@@ -13,7 +13,7 @@ export const TracksContext = createContext<DefaultTrackContext>({
 	searchInput: '',
 	setSearchInput() {},
 	async searchTracks(searchInput) {},
-	// async searchTrackFromRapid(id) {},
+	async searchAlbums(id) {},
 });
 
 const TracksContextProvider = ({ children }: ContextType) => {
@@ -66,6 +66,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 				setAccesToken(data.access_token);
 			}
 			searchTracks(searchInput);
+			searchAlbums(searchInput);
 		} catch (e: any) {
 			console.error(e.message);
 		}
@@ -97,9 +98,9 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			if (localTracks) setTracks(localTracks.tracks);
 		}
 	};
-	useEffect(() => {
-		searchAlbums();
-	}, [accesToken]);
+	// useEffect(() => {
+	// 	searchAlbums();
+	// }, [accesToken]);
 
 	const searchAlbums = async (track = 'sia') => {
 		const params = {
@@ -132,6 +133,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 				setSearchInput,
 				getApi,
 				searchTracks,
+				searchAlbums,
 				// searchTrackFromRapid,
 			}}
 		>

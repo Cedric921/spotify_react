@@ -57,7 +57,7 @@ export type DefaultTrackContext = {
 	searchInput: string;
 	getApi: () => Promise<void>;
 	searchTracks: (searchInput: string) => Promise<void>;
-	// searchTrackFromRapid: (id?: string) => Promise<void>;
+	searchAlbums: (id?: string) => Promise<void>;
 	setSearchInput: React.Dispatch<React.SetStateAction<string>>;
 };
 

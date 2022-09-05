@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useContext, useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import { Routes, Route } from 'react-router-dom';
 import { createTheme, PaletteMode, ThemeProvider } from '@mui/material';
@@ -12,6 +12,7 @@ import AlbumsPage from './pages/Album';
 
 const App: React.FC = () => {
 	const [mode, setMode] = useState<PaletteMode>('dark');
+	
 	const { user, init, checkUser } = useContext(GoogleContext);
 	const darkTheme = createTheme({
 		palette: {
@@ -20,7 +21,6 @@ const App: React.FC = () => {
 	});
 
 	useEffect(() => {
-		
 		if (!checkUser()) init();
 		console.log(user.email);
 	}, []);
