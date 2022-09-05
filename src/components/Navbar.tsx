@@ -3,6 +3,7 @@ import {
 	Logout,
 	ModeNight,
 	Settings,
+	Search,
 } from '@mui/icons-material';
 import {
 	AppBar,
@@ -32,6 +33,9 @@ const SearchBar = styled('div')(({ theme }) => ({
 	borderRadius: theme.shape.borderRadius,
 	color: 'grey',
 	width: '40%',
+	maxWidth: '400px',
+	display: 'flex',
+	alignItem: 'center',
 }));
 
 const Icons = styled(Box)(({ theme }) => ({
@@ -64,13 +68,15 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 		<AppBar position='sticky'>
 			<StyledToolbar>
 				<Typography>Music search</Typography>
-				<SearchBar color={'text.primary'}>
+				<SearchBar>
 					<InputBase
+						color='primary'
 						placeholder='Search track'
 						fullWidth
 						onChange={(e) => {
 							setSearchInput(e.target.value);
 							searchTracks(searchInput);
+							// searchAlbums(searchInput);
 						}}
 						onKeyUp={(e) => {
 							if (e.key === 'Enter') {
@@ -78,6 +84,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 							}
 						}}
 					/>
+					<Search width='100px' />
 				</SearchBar>
 				<Icons>
 					{mode == 'dark' ? (
@@ -108,6 +115,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 				// anchorEl={el}
 				open={openMenu}
 				onClose={() => setOpenMenu(false)}
+				// anchorEl={() => undefined}
 				anchorOrigin={{
 					vertical: 'top',
 					horizontal: 'right',
@@ -119,8 +127,8 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 			>
 				<MenuItem
 					onClick={() => {
-						<Navigate to='/login' />;
 						logout();
+						<Navigate to='/login' />;
 					}}
 				>
 					<Logout sx={{ marginRight: 2 }} />

@@ -1,9 +1,7 @@
-
 import React, { createContext, useState } from 'react';
 import { DefaultUserContext, UserType } from '../types/tracks.type';
 import jwt_decode from 'jwt-decode';
 import { ContextType } from '../types/tracks.type';
-
 
 export const GoogleContext = createContext<DefaultUserContext>({
 	user: { email: '', name: '', picture: '' },
@@ -30,8 +28,8 @@ const GoogleContextProvider = ({ children }: ContextType) => {
 		const userObject: UserType = jwt_decode(response.credential);
 		setUser(userObject);
 		localStorage.setItem('user', JSON.stringify(userObject));
-		console.log('login	',userObject);
-		// document.getElementById('googleSignInButton')?.hidden = true,
+		console.log('login	', userObject);
+		// document.getElementById('googleSignInButton')!.hidden = true;
 	};
 
 	const checkUser = () => {
