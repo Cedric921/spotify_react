@@ -15,7 +15,7 @@ const SongsPage = () => {
 		release_date: '',
 		album: { images: [{ height: 0, url: '' }] },
 	});
-	const { tracks, searchTracks, song, searchInput } = useContext(TracksContext);
+	const { tracks, searchTracks, searchInput } = useContext(TracksContext);
 	useEffect(() => {
 		searchTracks(searchInput);
 	}, []);

@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import {
-	Avatar,
-	Box,
 	Card,
-	CardActions,
-	CardContent,
-	CardHeader,
-	CardMedia,
-	IconButton,
-	Modal,
-	styled,
+	Box,
 	Typography,
+	styled,
+	Modal,
+	CardMedia,
 } from '@mui/material';
-import { Audiotrack, MoreVert } from '@mui/icons-material';
-import { grey } from '@mui/material/colors';
 import { AlbumType } from '../types/tracks.type';
 
 const CustomModal = styled(Modal)({
@@ -28,50 +21,48 @@ type SingleAlbumType = {
 
 const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 	const [openModal, setOpenModal] = useState(false);
+
 	return (
-		<>
+		<Box
+			sx={{
+				textAlign: 'center',
+				marginBottom: '20px',
+				background:  '#121212',
+				borderRadius: 8,
+				boxShadow: '0px 0px 5px  rgba(255,255,255,0.25)',
+				padding: '15px',
+				margin: '5px',
+				color: 'black',
+			}}
+		>
 			<Card
 				sx={{
-					width: '25%',
 					maxWidth: 245,
 					minWidth: 200,
-					boxShadow: 15,
-					margin: 1,
+					height: 200,
+
+					boxShadow: 10,
+					margin: 0,
 					fontSize: 10,
+					borderRadius: 8,
 				}}
 				onClick={() => {
-					console.log(album.images[0].url);
 					setOpenModal(true);
 				}}
 			>
-				<CardHeader
-					fontSize={10}
-					avatar={
-						<Avatar sx={{ bgcolor: grey[500] }} aria-label='recipe'>
-							{album.name.split('')[0]}
-						</Avatar>
-					}
-					title={album?.name.substring(0, 15)}
-					subheader={album.release_date}
-				/>
+
 				<CardMedia
 					component='img'
 					height='194'
 					image={album && album.images && album.images[0].url}
 					alt={album.name}
+					sx={{ height: '100%' }}
 				/>
-				<CardContent>
-					<Typography variant='body2' color='text.secondary'>
-						{album.artists && album.artists.map((artist) => artist?.name)}
-					</Typography>
-				</CardContent>
-				<CardActions>
-					<Typography variant='h6' color='text.secondary'>
-						{album.total_tracks}
-					</Typography>
-					<Audiotrack />
-				</CardActions>
+
 			</Card>
+			<Typography variant='body2' color='white' marginTop={4}>
+				{album.artists && album.artists.map((artist) => artist?.name)}
+			</Typography>
 			<CustomModal
 				open={openModal}
 				onClose={() => {
@@ -102,7 +93,7 @@ const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 					></iframe>
 				</Box>
 			</CustomModal>
-		</>
+		</Box>
 	);
 };
 

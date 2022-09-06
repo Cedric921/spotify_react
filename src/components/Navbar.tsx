@@ -21,6 +21,7 @@ import {
 import React, { useContext, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { GoogleContext } from '../context/GoogleContext';
+import { ThemeContext } from '../context/ThemeContext';
 import { TracksContext } from '../context/TracksContext';
 import { AsideType } from '../types/tracks.type';
 
@@ -65,13 +66,14 @@ const CustomLink = styled(Link)(({ theme }) => ({
 	alignItems: 'center',
 	color: theme.palette.text.primary,
 	textDecoration: 'none',
-}))
+}));
 
-const Navbar = ({ mode, setMode }: AsideType) => {
+const Navbar = () => {
 	const [openMenu, setOpenMenu] = useState(false);
+	const { myTheme, setMyTheme } = useContext(ThemeContext);
+	const { user, logout } = useContext(GoogleContext);
 	const { searchTracks, searchInput, setSearchInput } =
 		useContext(TracksContext);
-	const { user, logout } = useContext(GoogleContext);
 
 	return (
 		<AppBar position='sticky'>
@@ -79,7 +81,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 				<Typography>Music search</Typography>
 				<SearchBar>
 					<InputBase
-						color='primary'
+						sx={{ color: 'black' }}
 						placeholder='Search track'
 						fullWidth
 						onChange={(e) => {
@@ -95,10 +97,10 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 					<Search width='200px' height='100%' />
 				</SearchBar>
 				<Icons>
-					{mode == 'dark' ? (
-						<LightMode color='info' onClick={() => setMode('light')} />
+					{myTheme == 'dark' ? (
+						<LightMode color='info' onClick={() => setMyTheme('light')} />
 					) : (
-						<ModeNight onClick={() => setMode('dark')} />
+						<ModeNight onClick={() => setMyTheme('dark')} />
 					)}
 					<Typography>{user.name && user.name}</Typography>
 					<Avatar
@@ -156,20 +158,22 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 				</MenuItem>
 				<MenuItem>
 					<CustomLink to='/album'>
-						<Group  sx={{ marginRight: 2 }} />
+						<Group sx={{ marginRight: 2 }} />
 						Artists
 					</CustomLink>
 				</MenuItem>
-				<MenuItem onClick={() => setMode(mode == 'dark' ? 'light' : 'dark')}>
-					{mode == 'dark' ? (
+				<MenuItem
+					onClick={() => setMyTheme(myTheme == 'dark' ? 'light' : 'dark')}
+				>
+					{myTheme == 'dark' ? (
 						<LightMode
 							color='info'
-							onClick={() => setMode('light')}
+							onClick={() => setMyTheme('light')}
 							sx={{ marginRight: 2 }}
 						/>
 					) : (
 						<ModeNight
-							onClick={() => setMode('dark')}
+							onClick={() => setMyTheme('dark')}
 							sx={{ marginRight: 2 }}
 						/>
 					)}

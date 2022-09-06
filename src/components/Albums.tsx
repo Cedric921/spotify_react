@@ -16,7 +16,7 @@ const Albums = () => {
 			<StyledTypography variant='h3' textAlign='center' margin={4}>
 				last albums
 			</StyledTypography>
-			<Grid container justifyContent='center' spacing={3} flexWrap='wrap'>
+			<Grid container justifyContent='center' spacing={3} flexWrap='wrap' gap={'15px'}>
 				{albums && albums.map((album, i) => <Album album={album} key={i} />)}
 			</Grid>
 		</Box>

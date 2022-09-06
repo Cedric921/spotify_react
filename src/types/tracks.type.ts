@@ -34,6 +34,7 @@ export type AlbumType = {
 	id: string;
 	name: string;
 	href: string;
+	album_type: string;
 	total_tracks: number;
 	artists: { id: string; name: string; external_urls: { spotify: string } }[];
 	external_urls: { spotify: string };

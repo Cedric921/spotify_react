@@ -25,11 +25,9 @@ const GoogleContextProvider = ({ children }: ContextType) => {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleCallbackResponse = (response: any | never) => {
-		console.log('Encoded JWT ID token :', response.credential);
 		const userObject: UserType = jwt_decode(response.credential);
 		setUser(userObject);
 		localStorage.setItem('user', JSON.stringify(userObject));
-		console.log('login	', userObject);
 		// document.getElementById('googleSignInButton')!.hidden = true;
 	};
 

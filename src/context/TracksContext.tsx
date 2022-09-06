@@ -15,11 +15,12 @@ export const TracksContext = createContext<DefaultTrackContext>({
 	setSearchInput() {
 		return null;
 	},
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
 	async searchTracks(_searchInput) {},
 });
 
 const TracksContextProvider = ({ children }: ContextType) => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [song, setSong] = useState({
 		id: '',
 		name: '',
@@ -70,6 +71,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			}
 			searchTracks(searchInput);
 		} catch (e: unknown | Error) {
+			// eslint-disable-next-line no-console
 			console.error(e);
 		}
 	};
@@ -85,7 +87,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 
 		try {
 			const response = await fetch(
-				`https://api.spotify.com/v1/search?q=${track}&type=album,track,artist`,
+				`https://api.spotify.com/v1/search?q=${track}&type=album,track,artist&offset=0&limit=50`,
 				params
 			);
 			const data = await response.json();
@@ -97,7 +99,6 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			localStorage.removeItem('spotifyTracks');
 			localStorage.setItem('spotifyTracks', JSON.stringify(data));
 		} catch (err: unknown) {
-			console.log(err);
 			//get all tracks from localStorage
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			const localTracks = JSON.parse(localStorage.getItem('spotifyTracks')!);
