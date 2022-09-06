@@ -4,6 +4,9 @@ import {
 	ModeNight,
 	Settings,
 	Search,
+	Group,
+	Album,
+	HomeOutlined,
 } from '@mui/icons-material';
 import {
 	AppBar,
@@ -17,7 +20,7 @@ import {
 	MenuItem,
 } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { GoogleContext } from '../context/GoogleContext';
 import { TracksContext } from '../context/TracksContext';
 import { AsideType } from '../types/tracks.type';
@@ -58,6 +61,13 @@ const UserBox = styled(Box)(({ theme }) => ({
 	},
 }));
 
+const CustomLink = styled(Link)(({ theme }) => ({
+	display: 'flex',
+	alignItems: 'center',
+	color: theme.palette.text.primary,
+	textDecoration: 'none',
+}))
+
 const Navbar = ({ mode, setMode }: AsideType) => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const { searchTracks, searchInput, setSearchInput } =
@@ -84,7 +94,7 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 							}
 						}}
 					/>
-					<Search width='100px' />
+					<Search width='200px' height='100%' />
 				</SearchBar>
 				<Icons>
 					{mode == 'dark' ? (
@@ -135,8 +145,22 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 					Log out
 				</MenuItem>
 				<MenuItem>
-					<Settings sx={{ marginRight: 2 }} />
-					Settings
+					<CustomLink to='/'>
+						<HomeOutlined sx={{ marginRight: 2 }} />
+						Home
+					</CustomLink>
+				</MenuItem>
+				<MenuItem>
+					<CustomLink to='/album'>
+						<Album sx={{ marginRight: 2 }} />
+						Albums
+					</CustomLink>
+				</MenuItem>
+				<MenuItem>
+					<CustomLink to='/album'>
+						<Group  sx={{ marginRight: 2 }} />
+						Artists
+					</CustomLink>
 				</MenuItem>
 				<MenuItem onClick={() => setMode(mode == 'dark' ? 'light' : 'dark')}>
 					{mode == 'dark' ? (

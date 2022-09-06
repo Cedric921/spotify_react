@@ -1,6 +1,5 @@
 import { Box, Grid, Modal, Stack, styled, Typography } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
-import ReactPlayer from 'react-player';
 // import
 import { TracksContext } from '../context/TracksContext';
 import { SingleTrackType, SongsType } from '../types/tracks.type';

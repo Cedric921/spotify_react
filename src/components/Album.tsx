@@ -12,7 +12,7 @@ import {
 	styled,
 	Typography,
 } from '@mui/material';
-import { MoreVert } from '@mui/icons-material';
+import { Audiotrack, MoreVert } from '@mui/icons-material';
 import { grey } from '@mui/material/colors';
 import { AlbumType } from '../types/tracks.type';
 
@@ -51,12 +51,7 @@ const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 							{album.name.split('')[0]}
 						</Avatar>
 					}
-					action={
-						<IconButton aria-label='settings'>
-							<MoreVert />
-						</IconButton>
-					}
-					title={album?.name}
+					title={album?.name.substring(0, 15)}
 					subheader={album.release_date}
 				/>
 				<CardMedia
@@ -67,11 +62,14 @@ const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 				/>
 				<CardContent>
 					<Typography variant='body2' color='text.secondary'>
-						{/* {album.name} */}
+						{album.artists && album.artists.map((artist) => artist?.name)}
 					</Typography>
 				</CardContent>
 				<CardActions>
-					<Typography>{album.total_tracks} tracks</Typography>
+					<Typography variant='h6' color='text.secondary'>
+						{album.total_tracks}
+					</Typography>
+					<Audiotrack />
 				</CardActions>
 			</Card>
 			<CustomModal

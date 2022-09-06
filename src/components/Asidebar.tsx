@@ -24,7 +24,7 @@ const StyledStack = styled(Stack)({
 
 const StyledLink = styled(Link)(({ theme }) => ({
 	textDecoration: 'none',
-	color: theme.palette.primary.dark,
+	color: theme.palette.text.primary,
 	width: '100%',
 }));
 
