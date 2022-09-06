@@ -1,18 +1,13 @@
-import React, { useState } from 'react';
-import {
-	Card,
-	Box,
-	Typography,
-	styled,
-	Modal,
-	CardMedia,
-} from '@mui/material';
+import React, { useState, useContext } from 'react';
+import { Card, Box, Typography, styled, Modal, CardMedia } from '@mui/material';
 import { AlbumType } from '../types/tracks.type';
+import { ThemeContext } from '../context/ThemeContext';
 
 const CustomModal = styled(Modal)({
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center',
+	border: 'none',
 });
 
 type SingleAlbumType = {
@@ -21,15 +16,22 @@ type SingleAlbumType = {
 
 const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 	const [openModal, setOpenModal] = useState(false);
+	const { myTheme } = useContext(ThemeContext);
 
 	return (
 		<Box
+			onClick={() => {
+				setOpenModal(!openModal);
+			}}
 			sx={{
 				textAlign: 'center',
 				marginBottom: '20px',
-				background:  '#121212',
+				background: myTheme == 'dark' ? '#121212' : '#ebebeb',
 				borderRadius: 8,
-				boxShadow: '0px 0px 5px  rgba(255,255,255,0.25)',
+				boxShadow:
+					myTheme == 'dark'
+						? '0px 0px 5px  rgba(255,255,255,0.25)'
+						: '0px 0px 5px  #2b2a2a3e',
 				padding: '15px',
 				margin: '5px',
 				color: 'black',
@@ -50,7 +52,6 @@ const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 					setOpenModal(true);
 				}}
 			>
-
 				<CardMedia
 					component='img'
 					height='194'
@@ -58,10 +59,31 @@ const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 					alt={album.name}
 					sx={{ height: '100%' }}
 				/>
-
 			</Card>
-			<Typography variant='body2' color='white' marginTop={4}>
+			<Typography variant='body2' color='text.secondary' marginTop={4}>
 				{album.artists && album.artists.map((artist) => artist?.name)}
+			</Typography>
+			<Typography
+				variant='body2'
+				color='text.secondary'
+				width={35}
+				height={35}
+				sx={{
+					position: 'relative',
+					top: '-100px',
+					right: '-150px',
+					backgroundColor: '#39618bc7',
+					color: 'black',
+					fontSize: 18,
+					borderRadius: 2,
+					textAlign: 'center',
+					fontWeight: 700,
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
+			>
+				{album.total_tracks}
 			</Typography>
 			<CustomModal
 				open={openModal}
