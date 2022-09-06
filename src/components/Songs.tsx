@@ -1,6 +1,5 @@
 import { Box, Grid, Modal, Stack, styled, Typography } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
-import ReactPlayer from 'react-player';
 // import
 import { TracksContext } from '../context/TracksContext';
 import { SingleTrackType, SongsType } from '../types/tracks.type';
@@ -16,7 +15,7 @@ const SongsPage = () => {
 		release_date: '',
 		album: { images: [{ height: 0, url: '' }] },
 	});
-	const { tracks, searchTracks, song, searchInput } = useContext(TracksContext);
+	const { tracks, searchTracks, searchInput } = useContext(TracksContext);
 	useEffect(() => {
 		searchTracks(searchInput);
 	}, []);

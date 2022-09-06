@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { DefaultTrackContext, ContextType } from '../types/tracks.type';
 
 // display songs from context
@@ -9,13 +9,18 @@ export const TracksContext = createContext<DefaultTrackContext>({
 	albums: [],
 	tracks: {},
 	song: {},
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	async getApi() {},
 	searchInput: '',
-	setSearchInput() {},
-	async searchTracks(searchInput) {},
+	setSearchInput() {
+		return null;
+	},
+	// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+	async searchTracks(_searchInput) {},
 });
 
 const TracksContextProvider = ({ children }: ContextType) => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [song, setSong] = useState({
 		id: '',
 		name: '',
@@ -65,8 +70,9 @@ const TracksContextProvider = ({ children }: ContextType) => {
 				setAccesToken(data.access_token);
 			}
 			searchTracks(searchInput);
-		} catch (e: any) {
-			console.error(e.message);
+		} catch (e: unknown | Error) {
+			// eslint-disable-next-line no-console
+			console.error(e);
 		}
 	};
 
@@ -81,7 +87,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 
 		try {
 			const response = await fetch(
-				`https://api.spotify.com/v1/search?q=${track}&type=album,track`,
+				`https://api.spotify.com/v1/search?q=${track}&type=album,track,artist&offset=0&limit=50`,
 				params
 			);
 			const data = await response.json();
@@ -92,9 +98,9 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			//add all tracks to local db
 			localStorage.removeItem('spotifyTracks');
 			localStorage.setItem('spotifyTracks', JSON.stringify(data));
-		} catch (err: any) {
-			console.log(err.message);
+		} catch (err: unknown) {
 			//get all tracks from localStorage
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			const localTracks = JSON.parse(localStorage.getItem('spotifyTracks')!);
 			if (localTracks) setTracks(localTracks.tracks);
 		}

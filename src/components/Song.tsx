@@ -41,7 +41,6 @@ const Song = ({ track, setTrack }: SongType) => {
 					fontSize: 10,
 				}}
 				onClick={() => {
-					console.log(track.id);
 					setTrack(track);
 					setOpenModal(true);
 				}}

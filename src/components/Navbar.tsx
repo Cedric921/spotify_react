@@ -2,8 +2,10 @@ import {
 	LightMode,
 	Logout,
 	ModeNight,
-	Settings,
 	Search,
+	Group,
+	Album,
+	HomeOutlined,
 } from '@mui/icons-material';
 import {
 	AppBar,
@@ -17,8 +19,9 @@ import {
 	MenuItem,
 } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { GoogleContext } from '../context/GoogleContext';
+import { ThemeContext } from '../context/ThemeContext';
 import { TracksContext } from '../context/TracksContext';
 import { AsideType } from '../types/tracks.type';
 
@@ -58,11 +61,19 @@ const UserBox = styled(Box)(({ theme }) => ({
 	},
 }));
 
-const Navbar = ({ mode, setMode }: AsideType) => {
+const CustomLink = styled(Link)(({ theme }) => ({
+	display: 'flex',
+	alignItems: 'center',
+	color: theme.palette.text.primary,
+	textDecoration: 'none',
+}));
+
+const Navbar = () => {
 	const [openMenu, setOpenMenu] = useState(false);
+	const { myTheme, setMyTheme } = useContext(ThemeContext);
+	const { user, logout } = useContext(GoogleContext);
 	const { searchTracks, searchInput, setSearchInput } =
 		useContext(TracksContext);
-	const { user, logout } = useContext(GoogleContext);
 
 	return (
 		<AppBar position='sticky'>
@@ -70,13 +81,12 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 				<Typography>Music search</Typography>
 				<SearchBar>
 					<InputBase
-						color='primary'
+						sx={{ color: 'black' }}
 						placeholder='Search track'
 						fullWidth
 						onChange={(e) => {
 							setSearchInput(e.target.value);
 							searchTracks(searchInput);
-							// searchAlbums(searchInput);
 						}}
 						onKeyUp={(e) => {
 							if (e.key === 'Enter') {
@@ -84,13 +94,13 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 							}
 						}}
 					/>
-					<Search width='100px' />
+					<Search width='200px' height='100%' />
 				</SearchBar>
 				<Icons>
-					{mode == 'dark' ? (
-						<LightMode color='info' onClick={() => setMode('light')} />
+					{myTheme == 'dark' ? (
+						<LightMode color='info' onClick={() => setMyTheme('light')} />
 					) : (
-						<ModeNight onClick={() => setMode('dark')} />
+						<ModeNight onClick={() => setMyTheme('dark')} />
 					)}
 					<Typography>{user.name && user.name}</Typography>
 					<Avatar
@@ -135,19 +145,35 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 					Log out
 				</MenuItem>
 				<MenuItem>
-					<Settings sx={{ marginRight: 2 }} />
-					Settings
+					<CustomLink to='/'>
+						<HomeOutlined sx={{ marginRight: 2 }} />
+						Home
+					</CustomLink>
 				</MenuItem>
-				<MenuItem onClick={() => setMode(mode == 'dark' ? 'light' : 'dark')}>
-					{mode == 'dark' ? (
+				<MenuItem>
+					<CustomLink to='/album'>
+						<Album sx={{ marginRight: 2 }} />
+						Albums
+					</CustomLink>
+				</MenuItem>
+				<MenuItem>
+					<CustomLink to='/album'>
+						<Group sx={{ marginRight: 2 }} />
+						Artists
+					</CustomLink>
+				</MenuItem>
+				<MenuItem
+					onClick={() => setMyTheme(myTheme == 'dark' ? 'light' : 'dark')}
+				>
+					{myTheme == 'dark' ? (
 						<LightMode
 							color='info'
-							onClick={() => setMode('light')}
+							onClick={() => setMyTheme('light')}
 							sx={{ marginRight: 2 }}
 						/>
 					) : (
 						<ModeNight
-							onClick={() => setMode('dark')}
+							onClick={() => setMyTheme('dark')}
 							sx={{ marginRight: 2 }}
 						/>
 					)}

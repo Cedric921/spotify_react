@@ -15,7 +15,7 @@ export type ContextType = {
 };
 
 export type SongsType = {
-	[x: string]: any;
+	[x: string]: unknown;
 	tracks?: { items: SingleTrackType[] };
 };
 
@@ -34,8 +34,9 @@ export type AlbumType = {
 	id: string;
 	name: string;
 	href: string;
+	album_type: string;
 	total_tracks: number;
-	artists: { id: string; external_urls: { spotify: string } }[];
+	artists: { id: string; name: string; external_urls: { spotify: string } }[];
 	external_urls: { spotify: string };
 	images: { url: string }[];
 	popularity: number;

@@ -1,25 +1,13 @@
-import React, { useState } from 'react';
-import {
-	Avatar,
-	Box,
-	Card,
-	CardActions,
-	CardContent,
-	CardHeader,
-	CardMedia,
-	IconButton,
-	Modal,
-	styled,
-	Typography,
-} from '@mui/material';
-import { MoreVert } from '@mui/icons-material';
-import { grey } from '@mui/material/colors';
+import React, { useState, useContext } from 'react';
+import { Card, Box, Typography, styled, Modal, CardMedia } from '@mui/material';
 import { AlbumType } from '../types/tracks.type';
+import { ThemeContext } from '../context/ThemeContext';
 
 const CustomModal = styled(Modal)({
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center',
+	border: 'none',
 });
 
 type SingleAlbumType = {
@@ -28,52 +16,75 @@ type SingleAlbumType = {
 
 const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 	const [openModal, setOpenModal] = useState(false);
+	const { myTheme } = useContext(ThemeContext);
+
 	return (
-		<>
+		<Box
+			onClick={() => {
+				setOpenModal(!openModal);
+			}}
+			sx={{
+				textAlign: 'center',
+				marginBottom: '20px',
+				background: myTheme == 'dark' ? '#121212' : '#ebebeb',
+				borderRadius: 8,
+				boxShadow:
+					myTheme == 'dark'
+						? '0px 0px 5px  rgba(255,255,255,0.25)'
+						: '0px 0px 5px  #2b2a2a3e',
+				padding: '15px',
+				margin: '5px',
+				color: 'black',
+			}}
+		>
 			<Card
 				sx={{
-					width: '25%',
 					maxWidth: 245,
 					minWidth: 200,
-					boxShadow: 15,
-					margin: 1,
+					height: 200,
+
+					boxShadow: 10,
+					margin: 0,
 					fontSize: 10,
+					borderRadius: 8,
 				}}
 				onClick={() => {
-					console.log(album.images[0].url);
 					setOpenModal(true);
 				}}
 			>
-				<CardHeader
-					fontSize={10}
-					avatar={
-						<Avatar sx={{ bgcolor: grey[500] }} aria-label='recipe'>
-							{album.name.split('')[0]}
-						</Avatar>
-					}
-					action={
-						<IconButton aria-label='settings'>
-							<MoreVert />
-						</IconButton>
-					}
-					title={album?.name}
-					subheader={album.release_date}
-				/>
 				<CardMedia
 					component='img'
 					height='194'
 					image={album && album.images && album.images[0].url}
 					alt={album.name}
+					sx={{ height: '100%' }}
 				/>
-				<CardContent>
-					<Typography variant='body2' color='text.secondary'>
-						{/* {album.name} */}
-					</Typography>
-				</CardContent>
-				<CardActions>
-					<Typography>{album.total_tracks} tracks</Typography>
-				</CardActions>
 			</Card>
+			<Typography variant='body2' color='text.secondary' marginTop={4}>
+				{album.artists && album.artists.map((artist) => artist?.name)}
+			</Typography>
+			<Typography
+				variant='body2'
+				color='text.secondary'
+				width={35}
+				height={35}
+				sx={{
+					position: 'relative',
+					top: '-100px',
+					right: '-150px',
+					backgroundColor: '#39618bc7',
+					color: 'black',
+					fontSize: 18,
+					borderRadius: 2,
+					textAlign: 'center',
+					fontWeight: 700,
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
+			>
+				{album.total_tracks}
+			</Typography>
 			<CustomModal
 				open={openModal}
 				onClose={() => {
@@ -104,7 +115,7 @@ const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 					></iframe>
 				</Box>
 			</CustomModal>
-		</>
+		</Box>
 	);
 };
 

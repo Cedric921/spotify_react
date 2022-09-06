@@ -9,20 +9,20 @@ import { GoogleContext } from './context/GoogleContext';
 import LoginPage from './pages/Login';
 import Navbar from './components/Navbar';
 import AlbumsPage from './pages/Album';
+import { ThemeContext } from './context/ThemeContext';
 
 const App: React.FC = () => {
-	const [mode, setMode] = useState<PaletteMode>('dark');
-	
+	const { myTheme } = useContext(ThemeContext);
+
 	const { user, init, checkUser } = useContext(GoogleContext);
 	const darkTheme = createTheme({
 		palette: {
-			mode: mode,
+			mode: myTheme,
 		},
 	});
 
 	useEffect(() => {
 		if (!checkUser()) init();
-		console.log(user.email);
 	}, []);
 
 	return (
@@ -32,7 +32,7 @@ const App: React.FC = () => {
 					<Navigate to='/login' replace />
 				) : (
 					<>
-						<Navbar mode={mode} setMode={setMode} />
+						<Navbar />
 						<Routes>
 							<Route path='/login' element={<LoginPage />} />
 							<Route path='/album' element={<AlbumsPage />} />
