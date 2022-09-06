@@ -52,11 +52,6 @@ const Song = ({ track, setTrack }: SongType) => {
 							{track.name.split('')[0]}
 						</Avatar>
 					}
-					action={
-						<IconButton aria-label='settings'>
-							<MoreVert />
-						</IconButton>
-					}
 					title={track.name}
 					subheader={track.release_date}
 				/>

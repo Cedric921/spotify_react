@@ -53,8 +53,8 @@ export type DefaultTrackContext = {
 		release_date: string;
 		uri: string;
 	}[];
-	tracks: SongsType;
-	song: SongsType;
+	tracks: { items: SingleTrackType[] };
+	// song: SongsType;
 	searchInput: string;
 	getApi: () => Promise<void>;
 	searchTracks: (searchInput: string) => Promise<void>;

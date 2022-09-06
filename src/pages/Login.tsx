@@ -25,7 +25,6 @@ const LoginPage: React.FC = () => {
 				</CustomBox>
 			) : (
 				<Navigate to='/' replace/>
-					// null
 			)}
 		</>
 	);

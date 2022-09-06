@@ -7,8 +7,7 @@ const CLIENT_SECRET = '174f7831a4c243fd9a92577d3a6413c9';
 
 export const TracksContext = createContext<DefaultTrackContext>({
 	albums: [],
-	tracks: {},
-	song: {},
+	tracks: { items: [] },
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	async getApi() {},
 	searchInput: '',
@@ -21,21 +20,27 @@ export const TracksContext = createContext<DefaultTrackContext>({
 
 const TracksContextProvider = ({ children }: ContextType) => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [song, setSong] = useState({
-		id: '',
-		name: '',
-		href: '',
-		popularity: 0,
-		release_date: '',
-		album: { images: { height: 0, url: [] } },
-	});
+	// const [song, setSong] = useState({
+	// 	id: '',
+	// 	name: '',
+	// 	href: '',
+	// 	popularity: 0,
+	// 	release_date: '',
+	// 	album: { images: { height: 0, url: [] } },
+	// });
 	const [tracks, setTracks] = useState({
-		id: '',
-		name: '',
-		href: '',
-		popularity: 0,
-		release_date: '',
-		album: { images: { height: 0, url: [] } },
+		items: [
+			{
+				id: '',
+				name: '',
+				href: '',
+				artists: [{ id: '', external_urls: { spotify: '' } }],
+				external_urls: { spotify: '' },
+				popularity: 0,
+				release_date: '',
+				album: { images: [{ height: 0, url: '' }] },
+			},
+		],
 	});
 	const [albums, setAlbums] = useState([
 		{
@@ -47,7 +52,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			uri: '',
 		},
 	]);
-	const [searchInput, setSearchInput] = useState('bilie elish');
+	const [searchInput, setSearchInput] = useState('billie elish');
 	const [accesToken, setAccesToken] = useState(null);
 
 	/**
@@ -110,7 +115,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 		<TracksContext.Provider
 			value={{
 				albums,
-				song,
+				// song,
 				tracks,
 				searchInput,
 				setSearchInput,
