@@ -2,7 +2,6 @@ import {
 	LightMode,
 	Logout,
 	ModeNight,
-	Settings,
 	Search,
 	Group,
 	Album,
@@ -86,7 +85,6 @@ const Navbar = ({ mode, setMode }: AsideType) => {
 						onChange={(e) => {
 							setSearchInput(e.target.value);
 							searchTracks(searchInput);
-							// searchAlbums(searchInput);
 						}}
 						onKeyUp={(e) => {
 							if (e.key === 'Enter') {
