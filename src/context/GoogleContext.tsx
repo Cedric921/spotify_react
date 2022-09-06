@@ -5,8 +5,8 @@ import { ContextType } from '../types/tracks.type';
 
 export const GoogleContext = createContext<DefaultUserContext>({
 	user: { email: '', name: '', picture: '' },
-	init() {},
-	logout() {},
+	init() { return 0},
+	logout() { return 0},
 	checkUser() {
 		return false;
 	},
@@ -23,7 +23,8 @@ const GoogleContextProvider = ({ children }: ContextType) => {
 		picture: '',
 	});
 
-	const handleCallbackResponse = (response: any) => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const handleCallbackResponse = (response: any | never) => {
 		console.log('Encoded JWT ID token :', response.credential);
 		const userObject: UserType = jwt_decode(response.credential);
 		setUser(userObject);
@@ -47,12 +48,13 @@ const GoogleContextProvider = ({ children }: ContextType) => {
 	};
 
 	const init = () => {
-		google.accounts.id.initialize({
+		google && google.accounts.id.initialize({
 			client_id:
 				'168229458088-mcq83hee6e26q3l5t45r8c6a0k9f7rgv.apps.googleusercontent.com',
 			callback: handleCallbackResponse,
 		});
-		google.accounts.id.renderButton(
+		google && google.accounts.id.renderButton(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			document.getElementById('googleSignInButton')!,
 			{ theme: 'outline', size: 'large' }
 		);

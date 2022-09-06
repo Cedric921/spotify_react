@@ -6,7 +6,7 @@ import SongsPage from '../components/Songs';
 //context
 import { TracksContext } from '../context/TracksContext';
 
-// display adbum from context
+// display tracks  from context
 const HomePage = () => {
 	const { getApi } = useContext(TracksContext);
 

@@ -15,7 +15,7 @@ export type ContextType = {
 };
 
 export type SongsType = {
-	[x: string]: any;
+	[x: string]: unknown;
 	tracks?: { items: SingleTrackType[] };
 };
 

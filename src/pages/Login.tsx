@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { Box } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { GoogleContext } from '../context/GoogleContext';
 import { Navigate } from 'react-router-dom';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CustomBox = styled(Box)(({ theme }) => ({
 	width: '100vw',
 	height: '100vh',
