@@ -54,7 +54,7 @@ export type DefaultTrackContext = {
 		uri: string;
 	}[];
 	tracks: { items: SingleTrackType[] };
-	song: SongsType;
+	// song: SongsType;
 	searchInput: string;
 	getApi: () => Promise<void>;
 	searchTracks: (searchInput: string) => Promise<void>;
