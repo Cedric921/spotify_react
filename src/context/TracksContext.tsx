@@ -47,7 +47,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			uri: '',
 		},
 	]);
-	const [searchInput, setSearchInput] = useState('bilie elish');
+	const [searchInput, setSearchInput] = useState('billie elish');
 	const [accesToken, setAccesToken] = useState(null);
 
 	/**

@@ -23,7 +23,6 @@ import { Link, Navigate } from 'react-router-dom';
 import { GoogleContext } from '../context/GoogleContext';
 import { ThemeContext } from '../context/ThemeContext';
 import { TracksContext } from '../context/TracksContext';
-import { AsideType } from '../types/tracks.type';
 
 const StyledToolbar = styled(Toolbar)({
 	display: 'flex',

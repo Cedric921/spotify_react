@@ -15,5 +15,5 @@ ReactDOM.render(
 			</GoogleContextProvider>
 		</ThemeContextProvider>
 	</React.StrictMode>,
-	document.getElementById('root')!
+	document.getElementById('root')
 );

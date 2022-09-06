@@ -14,6 +14,7 @@ type SingleAlbumType = {
 	album: AlbumType;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 	const [openModal, setOpenModal] = useState(false);
 	const { myTheme } = useContext(ThemeContext);

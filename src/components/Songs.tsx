@@ -20,19 +20,12 @@ const SongsPage = () => {
 		searchTracks(searchInput);
 	}, []);
 
-	const StyledTypography = styled(Typography)(({ theme }) => ({
-		padding: '10px',
-		color: '#d9f4ff',
-		textShadow: '0px 0px 10px  #000000',
-		// width: '100%',
-	}));
-
 	return (
 		<>
 			<Box flex={4} bgcolor={'background.primary'} color={'text.primary'}>
-				<StyledTypography variant='h3' textAlign='center' margin={4}>
-					last musics
-				</StyledTypography>
+				<Typography variant='h3' textAlign='start' margin={4}>
+					Tracks - { searchInput}
+				</Typography>
 				{tracks ? (
 					<>
 						<Grid
@@ -68,7 +61,6 @@ const SongsPage = () => {
 							href='https://www.flaticon.com/free-icons/loading'
 							title='loading icons'
 						>
-							Loading icons created by Pixel perfect - Flaticon
 						</a>
 					</Stack>
 				)}
