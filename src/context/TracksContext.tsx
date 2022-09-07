@@ -14,20 +14,12 @@ export const TracksContext = createContext<DefaultTrackContext>({
 	setSearchInput() {
 		return null;
 	},
-	// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
 	async searchTracks(_searchInput) {},
 });
 
 const TracksContextProvider = ({ children }: ContextType) => {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	// const [song, setSong] = useState({
-	// 	id: '',
-	// 	name: '',
-	// 	href: '',
-	// 	popularity: 0,
-	// 	release_date: '',
-	// 	album: { images: { height: 0, url: [] } },
-	// });
+
 	const [tracks, setTracks] = useState({
 		items: [
 			{
@@ -80,6 +72,11 @@ const TracksContextProvider = ({ children }: ContextType) => {
 			console.error(e);
 		}
 	};
+
+	/***
+	 *  @params string track 
+	 * function to give us data form spotify api by keyword in param
+	 */
 
 	const searchTracks = async (track = 'sia') => {
 		const params = {
