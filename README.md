@@ -1,4 +1,4 @@
-# Strwaming music
+# Streaming music
 
 An application to playing music, albums, playlists, and artist tracks
 
