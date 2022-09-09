@@ -60,32 +60,39 @@ const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 					alt={album.name}
 					sx={{ height: '100%' }}
 				/>
+				<Typography
+					variant='body2'
+					color='text.primary'
+					width={35}
+					height={35}
+					sx={{
+						position: 'relative',
+						top: '-50px',
+						right: '-150px',
+						backgroundColor: '#39618bc7',
+						color: 'black',
+						fontSize: 18,
+						borderRadius: 2,
+						textAlign: 'center',
+						fontWeight: 700,
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}
+				>
+					{album.total_tracks}
+				</Typography>
 			</Card>
-			<Typography variant='body2' color='text.secondary' marginTop={4}>
-				{album.artists && album.artists.map((artist) => artist?.name)}
+			<Typography variant='body2' color='text.secondary' marginTop={1}>
+				{album.name && album.name.substring(0, 20)}
 			</Typography>
-			<Typography
-				variant='body2'
-				color='text.secondary'
-				width={35}
-				height={35}
-				sx={{
-					position: 'relative',
-					top: '-100px',
-					right: '-150px',
-					backgroundColor: '#39618bc7',
-					color: 'black',
-					fontSize: 18,
-					borderRadius: 2,
-					textAlign: 'center',
-					fontWeight: 700,
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-				}}
-			>
-				{album.total_tracks}
+			<Typography variant='body2' color='text.secondary' marginTop={1}>
+				{album.artists &&
+					album.artists.map(
+						(artist) => '*' + artist?.name.substring(0, 20) 
+					)}
 			</Typography>
+
 			<CustomModal
 				open={openModal}
 				onClose={() => {

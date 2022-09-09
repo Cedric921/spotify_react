@@ -1,18 +1,23 @@
-# Running React on Repl.it
+# Strwaming music
 
-[React](https://reactjs.org/) is a popular JavaScript library for building user interfaces.
+An application to playing music, albums, playlists, and artist tracks
 
-[Vite](https://vitejs.dev/) is a blazing fast frontend build tool that includes features like Hot Module Reloading (HMR), optimized builds, and TypeScript support out of the box.
+> this app is just for react training
 
-Using the two in conjunction is one of the fastest ways to build a web app.
+Many topics are developed by this app like:
 
-## Getting Started
+- React Context Hooks
 
-- Hit run
-- Edit [App.jsx](#src/App.jsx) and watch it live update!
+  Context hooks
 
-By default, Replit runs the `dev` script, but you can configure it by changing the `run` field in the [configuration file](#.replit). Here are the vite docs for [serving production websites](https://vitejs.dev/guide/build.html)
+  Data fetching with fetch js api
 
-### Typescript
+- This app use also many features for styles:
 
-Just rename any file from `.jsx` to `.tsx`. You can also try our [TypeScript Template](https://replit.com/@replit/React-TypeScript)
+  Material ui 5(mui)
+
+  Light dark mode
+
+- This app use spotify api for tracks data
+
+This app is build by **Cedric Karungu** for web development training in **Goma Digital Academy**
