@@ -83,8 +83,14 @@ const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 					{album.total_tracks}
 				</Typography>
 			</Card>
-			<Typography variant='body2' color='text.secondary' marginTop={4}>
-				{album.artists && album.artists.map((artist) => artist?.name)}
+			<Typography variant='body2' color='text.secondary' marginTop={1}>
+				{album.name && album.name.substring(0, 20)}
+			</Typography>
+			<Typography variant='body2' color='text.secondary' marginTop={1}>
+				{album.artists &&
+					album.artists.map(
+						(artist) => '*' + artist?.name.substring(0, 20) 
+					)}
 			</Typography>
 
 			<CustomModal

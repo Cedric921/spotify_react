@@ -77,7 +77,7 @@ const Navbar = () => {
 	return (
 		<AppBar position='sticky'>
 			<StyledToolbar>
-				<Typography>Music search</Typography>
+				<Typography>Music TK</Typography>
 				<SearchBar>
 					<InputBase
 						sx={{ color: 'black' }}
@@ -134,7 +134,7 @@ const Navbar = () => {
 					horizontal: 'left',
 				}}
 			>
-				<MenuItem
+				{/* <MenuItem
 					onClick={() => {
 						logout();
 						<Navigate to='/login' />;
@@ -142,7 +142,7 @@ const Navbar = () => {
 				>
 					<Logout sx={{ marginRight: 2 }} />
 					Log out
-				</MenuItem>
+				</MenuItem> */}
 				<MenuItem>
 					<CustomLink to='/'>
 						<HomeOutlined sx={{ marginRight: 2 }} />
