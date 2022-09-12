@@ -12,8 +12,8 @@ export const TracksContext = createContext<DefaultTrackContext>({
 	async getApi() {},
 	searchInput: '',
 	play: {
-		id: '0JGOiO34nwfUdDrD612dOp',
-		type: 'album',
+		id: '',
+		type: '',
 	},
 	setPlay() {
 		return null;
@@ -53,8 +53,8 @@ const TracksContextProvider = ({ children }: ContextType) => {
 	const [searchInput, setSearchInput] = useState('billie elish');
 	const [accesToken, setAccesToken] = useState(null);
 	const [play, setPlay] = useState({
-		id: '0JGOiO34nwfUdDrD612dOp',
-		type: 'album',
+		id: '',
+		type: '',
 	});
 
 	/**

@@ -1,4 +1,4 @@
-import { Box, Grid, Stack , Typography } from '@mui/material';
+import { Box, Grid, Stack, Typography } from '@mui/material';
 import React, { useContext, useEffect } from 'react';
 // import
 import { TracksContext } from '../context/TracksContext';
@@ -27,10 +27,7 @@ const SongsPage = () => {
 							sx={{ width: '100%' }}
 						>
 							{tracks.items?.map((track: SingleTrackType, i: number) => (
-								<Song
-									track={track}
-									key={i}
-								/>
+								<Song track={track} key={i} />
 							))}
 						</Grid>
 						<Box
@@ -50,16 +47,24 @@ const SongsPage = () => {
 								display: { xs: 'flex', sm: 'none' },
 							}}
 						>
-							<iframe
-								style={{ borderRadius: '12px' }}
-								src={`https://open.spotify.com/embed/${play.type}/${play.id}?utm_source=generator`}
-								width='100%'
-								height='100%'
-								frameBorder='0'
-								allowFullScreen={true}
-								allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-								loading='lazy'
-							></iframe>
+							<Box
+								sx={{
+									width: '100%',
+									height: '100%',
+									display: play.id !== '' ? 'flex' : 'none',
+								}}
+							>
+								<iframe
+									style={{ borderRadius: '12px' }}
+									src={`https://open.spotify.com/embed/${play.type}/${play.id}?utm_source=generator`}
+									width='100%'
+									height='100%'
+									frameBorder='0'
+									allowFullScreen={true}
+									allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+									loading='lazy'
+								></iframe>
+							</Box>
 						</Box>
 					</>
 				) : (

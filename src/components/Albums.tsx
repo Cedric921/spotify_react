@@ -35,17 +35,25 @@ const Albums = () => {
 					right: 0,
 					display: { xs: 'flex', sm: 'none' },
 				}}
-			>
-				<iframe
-					style={{ borderRadius: '12px' }}
-					src={`https://open.spotify.com/embed/${play.type}/${play.id}?utm_source=generator`}
-					width='100%'
-					height='100%'
-					frameBorder='0'
-					allowFullScreen={true}
-					allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-					loading='lazy'
-				></iframe>
+				>
+				<Box
+					sx={{
+						width: '100%',
+						height: '100%',
+						display: play.id !== '' ? 'flex' : 'none',
+					}}
+				>
+					<iframe
+						style={{ borderRadius: '12px' }}
+						src={`https://open.spotify.com/embed/${play.type}/${play.id}?utm_source=generator`}
+						width='100%'
+						height='100%'
+						frameBorder='0'
+						allowFullScreen={true}
+						allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+						loading='lazy'
+					></iframe>
+				</Box>
 			</Box>
 		</Box>
 	);
