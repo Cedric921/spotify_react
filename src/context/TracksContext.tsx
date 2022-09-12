@@ -11,6 +11,13 @@ export const TracksContext = createContext<DefaultTrackContext>({
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	async getApi() {},
 	searchInput: '',
+	play: {
+		id: '',
+		type: '',
+	},
+	setPlay() {
+		return null;
+	},
 	setSearchInput() {
 		return null;
 	},
@@ -19,7 +26,6 @@ export const TracksContext = createContext<DefaultTrackContext>({
 });
 
 const TracksContextProvider = ({ children }: ContextType) => {
-
 	const [tracks, setTracks] = useState({
 		items: [
 			{
@@ -46,6 +52,10 @@ const TracksContextProvider = ({ children }: ContextType) => {
 	]);
 	const [searchInput, setSearchInput] = useState('billie elish');
 	const [accesToken, setAccesToken] = useState(null);
+	const [play, setPlay] = useState({
+		id: '',
+		type: '',
+	});
 
 	/**
 	 * Function to get the accesToken from spotify
@@ -74,7 +84,7 @@ const TracksContextProvider = ({ children }: ContextType) => {
 	};
 
 	/***
-	 *  @params string track 
+	 *  @params string track
 	 * function to give us data form spotify api by keyword in param
 	 */
 
@@ -111,6 +121,8 @@ const TracksContextProvider = ({ children }: ContextType) => {
 	return (
 		<TracksContext.Provider
 			value={{
+				play,
+				setPlay,
 				albums,
 				// song,
 				tracks,

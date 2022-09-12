@@ -1,6 +1,5 @@
 import {
 	LightMode,
-	Logout,
 	ModeNight,
 	Search,
 	Group,
@@ -19,7 +18,7 @@ import {
 	MenuItem,
 } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { GoogleContext } from '../context/GoogleContext';
 import { ThemeContext } from '../context/ThemeContext';
 import { TracksContext } from '../context/TracksContext';
@@ -70,7 +69,7 @@ const CustomLink = styled(Link)(({ theme }) => ({
 const Navbar = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const { myTheme, setMyTheme } = useContext(ThemeContext);
-	const { user, logout } = useContext(GoogleContext);
+	const { user } = useContext(GoogleContext);
 	const { searchTracks, searchInput, setSearchInput } =
 		useContext(TracksContext);
 

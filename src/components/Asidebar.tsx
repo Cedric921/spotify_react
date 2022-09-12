@@ -10,8 +10,9 @@ import {
 	Stack,
 	Avatar,
 } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { TracksContext } from '../context/TracksContext';
 
 const StyledBox = styled(Box)({
 	height: '100%',
@@ -29,6 +30,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 const Asidebar = () => {
+	const { play } = useContext(TracksContext);
 	return (
 		<StyledStack
 			flex={1}
@@ -38,7 +40,10 @@ const Asidebar = () => {
 		>
 			<StyledBox position='fixed' color={'text.primary'}>
 				<List>
-					<ListItem disablePadding sx={{ color: "text.primary", width: "100%"}}>
+					<ListItem
+						disablePadding
+						sx={{ color: 'text.primary', width: '100%' }}
+					>
 						<StyledLink to='/'>
 							<ListItemButton component='span'>
 								<ListItemIcon>
@@ -75,6 +80,30 @@ const Asidebar = () => {
 						</StyledLink>
 					</ListItem>
 				</List>
+				<Box
+					p={0}
+					bgcolor={'background.default'}
+					color={'text.primary'}
+					borderRadius={4}
+					justifyContent='center'
+					alignItems='center'
+					sx={{
+						width: '100%',
+						height: '400px',
+						display: play.id === '' ? 'none' : 'flex',
+					}}
+				>
+					<iframe
+						style={{ borderRadius: '12px' }}
+						src={`https://open.spotify.com/embed/${play.type}/${play.id}?utm_source=generator`}
+						width='100%'
+						height='100%'
+						frameBorder='0'
+						allowFullScreen={true}
+						allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+						loading='lazy'
+					></iframe>
+				</Box>
 			</StyledBox>
 		</StyledStack>
 	);

@@ -1,34 +1,24 @@
-import { MoreVert } from '@mui/icons-material';
 import {
 	Card,
 	CardHeader,
 	Avatar,
-	IconButton,
 	CardMedia,
 	CardContent,
 	Typography,
 	CardActions,
-	styled,
-	Box,
-	Modal,
 } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import React, { useState } from 'react';
-import { SingleTrackType, SongsType } from '../types/tracks.type';
+import React, {  useContext } from 'react';
+import { SingleTrackType } from '../types/tracks.type';
+import { TracksContext } from '../context/TracksContext';
 
 type SongType = {
 	track: SingleTrackType;
-	setTrack: React.Dispatch<React.SetStateAction<SongsType>>;
 };
 
-const CustomModal = styled(Modal)({
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
-});
 
-const Song = ({ track, setTrack }: SongType) => {
-	const [openModal, setOpenModal] = useState(false);
+const Song = ({ track }: SongType) => {
+	const { setPlay } = useContext(TracksContext);
 	return (
 		<>
 			<Card
@@ -41,8 +31,7 @@ const Song = ({ track, setTrack }: SongType) => {
 					fontSize: 10,
 				}}
 				onClick={() => {
-					setTrack(track);
-					setOpenModal(true);
+					setPlay({ id: track.id, type: 'track' });
 				}}
 			>
 				<CardHeader
@@ -70,36 +59,7 @@ const Song = ({ track, setTrack }: SongType) => {
 					<Typography>{track.popularity} popylarity</Typography>
 				</CardActions>
 			</Card>
-			<CustomModal
-				open={openModal}
-				onClose={() => {
-					setOpenModal(false);
-				}}
-				aria-labelledby=''
-				aria-describedby=''
-			>
-				<Box
-					width={500}
-					height={380}
-					p={0}
-					bgcolor={'background.default'}
-					color={'text.primary'}
-					borderRadius={4}
-					justifyContent='center'
-					alignItems='center'
-				>
-					<iframe
-						style={{ borderRadius: '12px' }}
-						src={`https://open.spotify.com/embed/track/${track.id}?utm_source=generator`}
-						width='100%'
-						height='100%'
-						frameBorder='0'
-						allowFullScreen={true}
-						allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-						loading='lazy'
-					></iframe>
-				</Box>
-			</CustomModal>
+
 		</>
 	);
 };

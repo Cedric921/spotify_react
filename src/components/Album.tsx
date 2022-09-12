@@ -1,14 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { Card, Box, Typography, styled, Modal, CardMedia } from '@mui/material';
+import React, { useContext } from 'react';
+import { Card, Box, Typography, CardMedia } from '@mui/material';
 import { AlbumType } from '../types/tracks.type';
 import { ThemeContext } from '../context/ThemeContext';
-
-const CustomModal = styled(Modal)({
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
-	border: 'none',
-});
+import { TracksContext } from '../context/TracksContext';
 
 type SingleAlbumType = {
 	album: AlbumType;
@@ -16,13 +10,13 @@ type SingleAlbumType = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
-	const [openModal, setOpenModal] = useState(false);
 	const { myTheme } = useContext(ThemeContext);
+	const { setPlay } = useContext(TracksContext);
 
 	return (
 		<Box
 			onClick={() => {
-				setOpenModal(!openModal);
+				setPlay({ id: album.id, type: 'album' });
 			}}
 			sx={{
 				textAlign: 'center',
@@ -48,9 +42,6 @@ const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 					margin: 0,
 					fontSize: 10,
 					borderRadius: 8,
-				}}
-				onClick={() => {
-					setOpenModal(true);
 				}}
 			>
 				<CardMedia
@@ -88,41 +79,8 @@ const Album: React.FC<any> = ({ album }: SingleAlbumType) => {
 			</Typography>
 			<Typography variant='body2' color='text.secondary' marginTop={1}>
 				{album.artists &&
-					album.artists.map(
-						(artist) => '*' + artist?.name.substring(0, 20) 
-					)}
+					album.artists.map((artist) => '*' + artist?.name.substring(0, 20))}
 			</Typography>
-
-			<CustomModal
-				open={openModal}
-				onClose={() => {
-					setOpenModal(false);
-				}}
-				aria-labelledby=''
-				aria-describedby=''
-			>
-				<Box
-					width={500}
-					height={500}
-					p={0}
-					bgcolor={'background.default'}
-					color={'text.primary'}
-					borderRadius={4}
-					justifyContent='center'
-					alignItems='center'
-				>
-					<iframe
-						style={{ borderRadius: '12px' }}
-						src={`https://open.spotify.com/embed/album/${album.id}?utm_source=generator`}
-						width='100%'
-						height='100%'
-						frameBorder='0'
-						allowFullScreen={true}
-						allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-						loading='lazy'
-					></iframe>
-				</Box>
-			</CustomModal>
 		</Box>
 	);
 };

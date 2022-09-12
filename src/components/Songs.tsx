@@ -1,21 +1,12 @@
-import { Box, Grid, Modal, Stack, styled, Typography } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import { Box, Grid, Stack , Typography } from '@mui/material';
+import React, { useContext, useEffect } from 'react';
 // import
 import { TracksContext } from '../context/TracksContext';
-import { SingleTrackType, SongsType } from '../types/tracks.type';
+import { SingleTrackType } from '../types/tracks.type';
 import Song from './Song';
 
 const SongsPage = () => {
-	// const [openModal, setOpenModal] = useState(false);
-	const [track, setTrack] = useState<SongsType>({
-		id: '',
-		name: '',
-		href: '',
-		popularity: 0,
-		release_date: '',
-		album: { images: [{ height: 0, url: '' }] },
-	});
-	const { tracks, searchTracks, searchInput } = useContext(TracksContext);
+	const { tracks, play, searchTracks, searchInput } = useContext(TracksContext);
 	useEffect(() => {
 		searchTracks(searchInput);
 	}, []);
@@ -24,7 +15,7 @@ const SongsPage = () => {
 		<>
 			<Box flex={4} bgcolor={'background.primary'} color={'text.primary'}>
 				<Typography variant='h3' textAlign='start' margin={4}>
-					Tracks - { searchInput}
+					Tracks - {searchInput}
 				</Typography>
 				{tracks ? (
 					<>
@@ -38,12 +29,38 @@ const SongsPage = () => {
 							{tracks.items?.map((track: SingleTrackType, i: number) => (
 								<Song
 									track={track}
-									setTrack={setTrack}
-									// setOpenModal={setOpenModal}
 									key={i}
 								/>
 							))}
 						</Grid>
+						<Box
+							p={0}
+							bgcolor={'background.default'}
+							color={'text.primary'}
+							borderRadius={0}
+							justifyContent='center'
+							alignItems='center'
+							sx={{
+								width: '100%',
+								height: '80px',
+								position: 'fixed',
+								bottom: 0,
+								left: 0,
+								right: 0,
+								display: { xs: 'flex', sm: 'none' },
+							}}
+						>
+							<iframe
+								style={{ borderRadius: '12px' }}
+								src={`https://open.spotify.com/embed/${play.type}/${play.id}?utm_source=generator`}
+								width='100%'
+								height='100%'
+								frameBorder='0'
+								allowFullScreen={true}
+								allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+								loading='lazy'
+							></iframe>
+						</Box>
 					</>
 				) : (
 					<Stack
@@ -56,12 +73,13 @@ const SongsPage = () => {
 							bgcolor: 'background.primary',
 						}}
 					>
-						<Typography variant='h3'>No song to show</Typography>
-						<a
-							href='https://www.flaticon.com/free-icons/loading'
-							title='loading icons'
+						<Box
+							justifyContent='center'
+							alignItems='center'
+							sx={{ width: '100%', height: '100%' }}
 						>
-						</a>
+							<Typography variant='h3'>No song to show</Typography>
+						</Box>
 					</Stack>
 				)}
 			</Box>
