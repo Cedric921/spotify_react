@@ -57,6 +57,8 @@ export type DefaultTrackContext = {
 	// song: SongsType;
 	searchInput: string;
 	getApi: () => Promise<void>;
+	play: { id: string; type: string };
+	setPlay: React.Dispatch<React.SetStateAction<{ id: string; type: string }>>;
 	searchTracks: (searchInput: string) => Promise<void>;
 	setSearchInput: React.Dispatch<React.SetStateAction<string>>;
 };
