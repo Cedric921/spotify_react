@@ -9,12 +9,11 @@ import {
 } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import React, {  useContext } from 'react';
-import { SingleTrackType, SongsType } from '../types/tracks.type';
+import { SingleTrackType } from '../types/tracks.type';
 import { TracksContext } from '../context/TracksContext';
 
 type SongType = {
 	track: SingleTrackType;
-	setTrack: React.Dispatch<React.SetStateAction<SongsType>>;
 };
 
 
